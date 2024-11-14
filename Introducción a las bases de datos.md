@@ -114,7 +114,7 @@ Un **DBMS** es un software especializado en definir, almacenar, manipular y cons
 
 El siguiente diagrama ilustra el esquema base de como funciona un DBMS: 
 
-![BD Diagrams - DBMS.png](assets/BD_Diagrams_-_DBMS.png)
+![BD Diagrams - DBMS.png](images/BD_Diagrams_-_DBMS.png)
 
 Imagen de autoria propia.
 
@@ -126,7 +126,7 @@ Un DBMS:
 
 # **DBMS más populares**
 
-![Popular_DBMS.png](assets/Popular_DBMS.png)
+![Popular_DBMS.png](images/Popular_DBMS.png)
 
 Imagen tomada de  https://db-engines.com/en/ranking
 
@@ -188,7 +188,7 @@ Este modelo permite representar el ejemplo del sistema de tienda digital de mús
 
 ## Componentes de un DBMS
 
-![Structure DBMS Book.png](assets/Structure_DBMS_Book.png)
+![Structure DBMS Book.png](images/Structure_DBMS_Book.png)
 
 ### Query Processor (Procesador de Consultas)
 
@@ -228,7 +228,7 @@ Uno de los aspectos fundamentales de la arquitectura de bases de datos es su arq
 
 ## Arquitectura de un nivel (One Tier)
 
-![BD Diagrams - One Tier.png](assets/BD_Diagrams_-_One_Tier.png)
+![BD Diagrams - One Tier.png](images/BD_Diagrams_-_One_Tier.png)
 
 - La aplicación y la base de datos se ejecutan en el mismo entorno, como una computadora personal o un dispositivo móvil. Es la arquitectura más simple, adecuada para aplicaciones locales.
 - **Ventajas:** Fácil de implementar y mantener, sin comunicación en red.
@@ -236,7 +236,7 @@ Uno de los aspectos fundamentales de la arquitectura de bases de datos es su arq
 
 ### Arquitectura de dos niveles (Two Tier)
 
-![BD Diagrams - Two Tiers.png](assets/BD_Diagrams_-_Two_Tiers.png)
+![BD Diagrams - Two Tiers.png](images/BD_Diagrams_-_Two_Tiers.png)
 
 - Divide la aplicación en dos partes:
     - **Aplicación (Cliente):** Interfaz gráfica donde los usuarios interactúan.
@@ -246,7 +246,7 @@ Uno de los aspectos fundamentales de la arquitectura de bases de datos es su arq
 
 ### Arquitectura de tres niveles (Three Tier)
 
-![BD Diagrams - Three Tiers.png](assets/BD_Diagrams_-_Three_Tiers.png).
+![BD Diagrams - Three Tiers.png](images/BD_Diagrams_-_Three_Tiers.png).
 
 - Introduce un nivel intermedio para manejar la lógica de la aplicación:
     - **Capa de presentación (cliente):** Interfaz gráfica.

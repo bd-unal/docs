@@ -37,13 +37,13 @@ Los grupos deben seleccionar uno de los siguientes proyectos como proyecto final
 - Diego Alejandro Arévalo Guevara
 - Julian Camilo Tobo Tenen
 
-**Grupo 4 - Sistema de Registro de Entrenamientos y Competencias para Triatletas **
+**Grupo 4 - Sistema de Registro de Entrenamientos y Competencias para Triatletas**
 - Holman Gonzalez
 - Jose Alejandro Solano
 - Nicolas Alexander Herrera
 - Luisa Guerrero
 
-**Grupo 5 - Portal académico **
+**Grupo 5 - Portal académico**
 - Maicol Garzón
 - Juan Miguez
 - Jonathan Castañeda
