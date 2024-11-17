@@ -9,7 +9,7 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 3. [Diseño de Bases de Datos Modelo Entidad Relación](Dise%C3%B1o%20de%20Bases%20de%20Datos%20Modelo%20Entidad%20Relaci%C3%B3n.md)
 
 ## Talleres
-- [Taller #1: Introducción a PostgreSQ, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231%20Introducci%C3%B3n%20a%20PostgreSQL%2C%20pgAdmin%20y%20Neon.tech.md)
+- [Taller #1: Introducción a PostgreSQL, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231%20Introducci%C3%B3n%20a%20PostgreSQL%2C%20pgAdmin%20y%20Neon.tech.md)
 
 ## Proyectos Finales
 - [Proyecto Final](Proyecto%20final.md)
