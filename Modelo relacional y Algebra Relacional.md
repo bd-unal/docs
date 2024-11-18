@@ -239,6 +239,40 @@ Cada `artist_id` en `albums` debe existir en `artists`.
 **Ejemplo**:
 No puedes tener un `artist_id` en `albums` que no exista en `artists`.
 
+### **21. Cardinalidad**
+**Definición**: La cardinalidad de una relación describe el número de filas (tuplas) presentes en una tabla en un momento específico.
+
+**Ejemplo**:  
+Si la tabla `artists` tiene las siguientes tres tuplas:
+| **artist_id** | **name**        | **country**   |
+|---------------|-----------------|---------------|
+| 1             | Taylor Swift    | USA           |
+| 2             | BTS             | South Korea   |
+| 3             | Adele           | UK            |
+
+La cardinalidad de la relación `artists` es **3**, porque hay tres filas en la tabla.
+
+---
+
+### **22. Grado**
+**Definición**: El grado de una relación se refiere al número de atributos (columnas) en una tabla.
+
+**Ejemplo**:  
+Para la tabla `albums`:
+| **album_id** | **title**                  | **release_year** | **artist_id** |
+|--------------|----------------------------|------------------|---------------|
+| 1            | Red                        | 2012             | 1             |
+| 2            | Map of the Soul: 7         | 2020             | 2             |
+| 3            | 25                         | 2015             | 3             |
+
+El grado de la relación `albums` es **4**, porque hay cuatro atributos en la tabla: `album_id`, `title`, `release_year`, y `artist_id`.
+
+---
+
+**Nota Importante**:
+- **Cardinalidad** se enfoca en la cantidad de datos en la tabla (número de filas).
+- **Grado** describe la estructura de la tabla (número de columnas).
+
 ---
 
 ## Ejercicio en clase
@@ -296,9 +330,9 @@ Dado el siguiente esquema y tablas, complete la tabla:
 | **Valores Nulos**            |                                                                                                              |
 | **Valores Atómicos**         |                                                                                                              |
 | **Relación Referenciada**    |                                                                                                              |
-| **Relación De Referencia**      |                                                                                                              |
-
-
+| **Relación De Referencia**   |                                                                                                              |
+| **Cardinalidad**             |                                                                                                              |
+| **Grado**                    |                                                                                                              |
 
 
 ---
