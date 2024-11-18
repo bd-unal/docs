@@ -42,7 +42,7 @@ El ejemplo modela un sistema para gestionar una tienda digital de música con la
 
 ## **Conceptos del Modelo Relacional**
 
-### **1. Table (Tabla) **
+### **1. Table (Tabla)**
 **Definición**: Una tabla es una colección de datos organizados en filas (tuplas) y columnas (atributos) dentro de una base de datos relacional.
 
 **Ejemplo**:
@@ -88,7 +88,7 @@ Los dominios pueden ser de dos tipos:
 
 **Ejemplo**:
 Para `country`, el dominio es un conjunto de cadenas que representan países válidos como `USA`, `South Korea`, `UK`, etc. Esto significa que:
-- Un valor como Mars sería inválido, porque no pertenece al dominio definido.
+- Un valor como `Mars` sería inválido, porque no pertenece al dominio definido.
 - El dominio también puede incluir restricciones adicionales, como límites de longitud (por ejemplo, una cadena de hasta 50 caracteres).
 
 Los dominios son útiles para asegurar que los datos en un atributo sean consistentes y válidos. Por ejemplo, si el dominio de la columna release_year en albums permite solo años entre 1900 y el año actual, cualquier valor fuera de este rango sería rechazado.
@@ -389,6 +389,7 @@ Para especificar una consulta en álgebra relacional, es preciso definir uno o m
 - **Agrupación (Γ):** permite operaciones algebraicas sobre los resultados de una consulta.
 
 # Bibliografía
+- [https://www.lucidchart.com/pages/es/que-es-un-modelo-de-base-de-datos]
 
 - Integridad: [https://online.hbs.edu/blog/post/what-is-data-integrity](https://online.hbs.edu/blog/post/what-is-data-integrity)
 
