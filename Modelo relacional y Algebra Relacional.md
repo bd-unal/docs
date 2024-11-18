@@ -332,7 +332,7 @@ Dado el siguiente esquema y tablas, complete la tabla:
 
 ### Complete
 
-| **Concepto**                 | **Descripción o Ejemplo en el Sistema**                                                                       |
+| **Concepto**                 | **Ejemplo en el Sistema**                                                                       |
 |------------------------------|--------------------------------------------------------------------------------------------------------------|
 | **Entidades (Tablas)**       |                                                                                                              |
 | **Atributos**                |                                                                                                              |
