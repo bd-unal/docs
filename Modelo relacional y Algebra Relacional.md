@@ -422,6 +422,8 @@ Así que, en resumen, SQL es **declarativo** porque te permite describir el resu
 
 # **Algebra Relacional**
 
+Se llama álgebra relacional a un conjunto de operaciones simples sobre tablas relacionales, a partir de las cuales se definen operaciones más complejas mediante composición.
+
 El álgebra relacional se inspira en la teoría de conjuntos para especificar consultas en una base de datos relacional.
 
 Para especificar una consulta en álgebra relacional, es preciso definir uno o más pasos que sirven para ir construyendo, mediante operaciones de álgebra relacional, una nueva relación que contenga los datos que responden a la consulta a partir de las relaciones almacenadas. 
