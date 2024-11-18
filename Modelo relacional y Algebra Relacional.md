@@ -99,9 +99,9 @@ Los dominios son útiles para asegurar que los datos en un atributo sean consist
 **Definición**: Un valor atómico es aquel que no puede dividirse en partes más pequeñas o que no tiene subestructuras significativas desde el punto de vista del modelo. Esto significa que cada celda en una tabla debe contener un único valor indivisible
 
 **Ejemplo**:
-El valor `Taylor Swift` en la columna `name` de la tabla `artists` es atómico. Caso contrario, si hubiese una celda que contuviera `Taylor Swift, USA`, sería una violación del principio de atomicidad, ya que contiene dos valores en una sola celda.
+El valor `330` en la columna `duration` de la tabla `songs` es atómico. Caso contrario, si hubiese una celda que contuviera `3:30`, sería una violación del principio de atomicidad, ya que contiene dos valores en una sola celda como son minutos y segundos.
 
-Requerimos que, para todas las relaciones `r`, los dominios de todos los atributos de `r` sean atómicos.
+> Requerimos que, para todas las relaciones `r`, los dominios de todos los atributos de `r` sean atómicos.
 
 ---
 
