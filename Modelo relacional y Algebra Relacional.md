@@ -274,6 +274,21 @@ El grado de la relación `albums` es **4**, porque hay cuatro atributos en la ta
 - **Grado** describe la estructura de la tabla (número de columnas).
 
 ---
+## Características
+- Los datos son atómicos.
+- Los datos de cualquier columna son de un solo tipo.
+- Cada columna posee un nombre único.
+- El orden de las columnas no es de importancia para la tabla.
+- Las columnas de una relación se conocen como atributos.
+- Cada atributo tiene un dominio.
+- No existen 2 filas en la tabla que sean idénticas.
+- Cada relación tiene un nombre específico y diferente al resto de las relaciones.
+- Los valores de los atributos son atómicos: en cada tupla, cada atributo (columna) toma un solo valor. Se dice que las relaciones están normalizadas.
+- El orden de los atributos no importa: los atributos no están ordenados.
+- Cada tupla es distinta de las demás: no hay tuplas duplicadas
+- El orden de las tuplas no importa: las tuplas no están ordenadas.
+
+---
 
 ## Ejercicio en clase
 
