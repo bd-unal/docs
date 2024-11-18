@@ -13,5 +13,3 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 ## Proyectos Finales
 - [Proyecto Final](Proyecto%20final.md)
 
-## Lista de asistencia y notas
-- [Lista de estudiantes](Lista%20estudiantes.md)
