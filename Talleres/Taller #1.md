@@ -145,7 +145,7 @@ En este taller, los estudiantes aprenderán a:
 2.  **Entrega**:
 - Enviar el reporte y cualquier consulta adicional que hayan realizado durante la exploración para su evaluación y retroalimentación al correo del profesor. Nombrar el correo `Taller #1 - {Nombre} {Apellido}`.
 
-> Plazo de entrega: Noviembre 19 de 2024 antes de las 12:00pm
+> Plazo de entrega: Noviembre 20 de 2024 antes de las 12:00pm
 > Recuerde las políticas del curso. Un trabajo entregado a destiempo tiene un penalidad en la nota. 20% por cada día de retraso sin excepción alguna.
 
 ---
