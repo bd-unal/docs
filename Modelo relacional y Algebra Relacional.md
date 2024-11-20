@@ -412,33 +412,6 @@ En resumen, para casos donde las relaciones son el foco, como la gestión de rec
 
 ---
 
-## Lenguajes de consulta Relacionales:
-
-SQL (Structured Query Language) es un lenguaje **declarativo**. En un lenguaje declarativo, como SQL, describes **qué** deseas obtener sin especificar **cómo** se debe lograr. Por ejemplo, cuando haces una consulta en SQL, defines los datos que quieres recuperar, pero no dictas los pasos exactos que el motor de la base de datos debe seguir para obtenerlos.
-
-En contraste, los lenguajes **imperativos** requieren que especifiques cada paso necesario para alcanzar un resultado, detallando **cómo** debe realizarse cada operación.
-
-Así que, en resumen, SQL es **declarativo** porque te permite describir el resultado deseado sin tener que detallar el proceso paso a paso.
-
-# **Algebra Relacional**
-
-Se llama álgebra relacional a un conjunto de operaciones simples sobre tablas relacionales, a partir de las cuales se definen operaciones más complejas mediante composición.
-
-El álgebra relacional se inspira en la teoría de conjuntos para especificar consultas en una base de datos relacional.
-
-Para especificar una consulta en álgebra relacional, es preciso definir uno o más pasos que sirven para ir construyendo, mediante operaciones de álgebra relacional, una nueva relación que contenga los datos que responden a la consulta a partir de las relaciones almacenadas. 
-
-### Operadores
-
-- **Selección (σ):** o restricción que funciona como un filtro.
-- **Proyección (Π):** la elección de atributos.
-- **Producto cartesiano (X):** combina las tuplas de 2 entidades.
-- **Unión Natural - Join (⋈):** combina las tuplas de 2 entidades solo si estas cumplen con un criterio en común.
-- **Unión (∪):** agrega todas las tuplas de 2 consultas.
-- **Diferencia (-):** agrega las tuplas resultantes de una consulta y remueve de este resultado las tuplas de una segunda consulta.
-- **Intersección (∩):** agrega las tuplas de 2 consultas solo si están presentes en cada una de ellas.
-- **Agrupación (Γ):** permite operaciones algebraicas sobre los resultados de una consulta.
-
 # Bibliografía
 - [https://www.lucidchart.com/pages/es/que-es-un-modelo-de-base-de-datos]
 
