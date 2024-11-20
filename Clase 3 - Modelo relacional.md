@@ -1,4 +1,4 @@
-# Modelo relacional y Algebra Relacional
+# Modelo relacional
 
 # Modelo de Datos
 
