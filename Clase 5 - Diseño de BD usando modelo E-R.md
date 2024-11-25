@@ -32,16 +32,16 @@ El diseño de bases de datos sigue un proceso estructurado que se divide en vari
 ---
 
 ### 4. **Diseño Lógico**
-   - **Objetivo:** Mapear el esquema conceptual a un modelo de datos que pueda implementarse en el sistema de gestión de bases de datos (DBMS) seleccionado, es decir en nuestro caso, mapear el esquema conceptual a un modelo relacional.
+   - **Objetivo:** Mapear el esquema conceptual a un modelo de datos que pueda implementarse en un sistema de gestión de bases de datos (DBMS), es decir en nuestro caso, mapear el esquema conceptual a un modelo relacional.
    - **Resultado:** Un esquema lógico que traduce las entidades y relaciones en tablas relacionales, incluyendo claves primarias y foráneas.
    - **Ejemplo:** Convertir la entidad "Libro" en una tabla con columnas como `ISBN`, `Título` y `Autor`.
 
 ---
 
 ### 5. **Diseño Físico**
-   - **Objetivo:** Especificar los detalles de almacenamiento físico, como índices, particionamiento y configuración de rendimiento.
+   - **Objetivo:** Implementar el diseño en un DBMS seleccionado. Especificar los detalles de almacenamiento físico, como índices, particionamiento y configuración de rendimiento.
    - **Resultado:** Un esquema físico optimizado para el DBMS seleccionado.
-   - **Ejemplo:** Crear un índice en la columna `ISBN` para mejorar el tiempo de respuesta en las consultas.
+   - **Ejemplo:** Crear las tablas en PostgreSQL y crear los índices en los atributos para mejorar el tiempo de respuesta en las consultas.
 
 ---
 
@@ -95,11 +95,10 @@ Nos enfocaremos en el diseño para los **usuarios de la aplicación**, es decir,
 - **Asignar vehículo:** Asociar un vehículo específico a un conductor.
 - **Consultar vehículos:** Recuperar datos de vehículos disponibles o asignados.
 
-> Nota👨🏻‍💻: Por convención para la clase, todos los nombres de entidades, relaciones y atributos, en este y todos los diagramas seguirán la convención snake_case. Consulte [aquí](https://es.wikipedia.org/wiki/Snake_case) para más detalles.
 ---
-> Nota 2👉: Existen varias notaciones para el modelo entidad relación, para este caso usaremos la notación Chen por ser la usada en el libro de referencia, sin embargo se puede suar cualquier notación. Para mas información entrar [aquí](https://www.lucidchart.com/pages/es/que-es-un-diagrama-entidad-relacion).
+> Nota 1👉: Existen varias notaciones para el modelo entidad relación, para este caso usaremos la notación Chen por ser la usada en el libro de referencia, sin embargo se puede suar cualquier notación. Para mas información entrar [aquí](https://www.lucidchart.com/pages/es/que-es-un-diagrama-entidad-relacion).
 ---
-> Nota 3 ➡️: Los diagramas pueden ser encontrados el el siguiente [link](https://drive.google.com/file/d/1tTywcj2pOB-zwR_5SGhG86gkkUaKcTG4/view?usp=sharing).
+> Nota 2 ➡️: Los diagramas pueden ser encontrados el el siguiente [link](https://drive.google.com/file/d/1tTywcj2pOB-zwR_5SGhG86gkkUaKcTG4/view?usp=sharing).
 
 ## DISEÑO CONCEPTUAL USANDO EL MODELO ENTIDAD-RELACIÓN (E-R)
 El modelo entidad relación describe la estructura de la base de datos a través de un diagrama que es conocido como el Diagrama Entidad-Relación (ER Diagram). Un modelo ER es un diseño o blueprint de una base de datos que posteriormente puede implementarse como base de datos. Los componentes principales del modelo E-R son: **conjunto de entidades (entity sets)**  y **conjunto de relaciones (relationship set)**.
@@ -167,7 +166,7 @@ Una relación puede tener atributos adicionales que describen la interacción.
 #### **3. Atributos Derivados:**
 El valor de un atributo derivado se calcula a partir de otros atributos relacionados o entidades asociadas. Estos valores no se almacenan directamente, sino que se **computan** cuando son necesarios. El atributo `edad` en la entidad **usuario** es derivado, ya que su valor puede calcularse a partir del atributo `fecha_nacimiento` y la fecha actual. <span style="color:#ff0000">Un atributo derivado es representado en el diagrama ER por medio un ovalo con linea punteada.</span>
 
-### Mapping Cardinalities
+### Cardinalidades
 Las cardinalidades en un modelo ER especifican la cantidad de instancias de una entidad que pueden estar asociadas con una instancia de otra entidad en una relación. A continuación, explicaremos las cardinalidades con ejemplos basados en nuestra aplicación de transporte **AeroTaxi**.
 
 #### **Uno-a-Uno (One-to-one) - 1:1:** 
@@ -212,31 +211,32 @@ En los diagramas ER, las líneas que conectan entidades con relaciones pueden in
   - Un valor de * (asterisco) indica que no hay límite en la participación.
 
 - **Ejemplo en nuestra aplicación:**
-  - Cada vehículo debe estar asociado a una empresa transportadora y una empresa puede tener ninguno o varios vehiculos.
+  - Cada vehículo debe estar asociado a una empresa transportadora y una empresa puede tener ninguno o varios vehículos.
 
 ### Participación Total y Parcial de Entidades en Relaciones
-En un modelo Entidad-Relación (E-R), la participación de un conjunto de entidades `𝐸` en un conjunto de relaciones 
-`𝑅` describe si todas o solo algunas entidades en `𝐸` están asociadas con al menos una relación en `𝑅`.
+En un modelo ER, la participación de un conjunto de entidades `𝐸` en un conjunto de relaciones `𝑅` describe si todas o sólo algunas entidades en `𝐸` están asociadas con al menos una relación en `𝑅`.
 
-- **Participación total**: Se dice que la participación de una entidad `𝐸` en una relación `R` es total si todas las entidades en `𝐸` participan en al menos una relación en `𝑅`. Se representa con doble linea en el diagrama ER.
+- **Participación total**: Se dice que la participación de una entidad `𝐸` en una relación `R` es total si todas las entidades en `𝐸` participan en al menos una relación en `𝑅`. Se representa con doble línea en el diagrama ER.
 
-  - Ejemplo: Cada vehículo debe estar asociado a una empresa transportadora, reflejado con una línea doble.
-Esto asegura que no haya vehículos "huérfanos" en el sistema.
+  - Ejemplo: Cada vehículo debe estar asociado a una empresa transportadora, reflejado con una línea doble. Esto asegura que no haya vehículos "huérfanos" en el sistema.
 
 - **Participación parcial**: Se dice que la participación de una entidad `E` en una relación `𝑅` es parcial si es posible que algunas entidades en `𝐸` no participen en ninguna relación en `𝑅`.
 
   - **Ejemplo en nuestra aplicación:** Las empresas transportadoras pueden existir en el sistema aunque no tengan vehículos asignados, reflejado con una línea simple.
 
 ### Entidades fuertes y débiles
-De todos los tipos de atributos, uno de los mas importante que debes conocer son los atributos de clave primaria y foránea. El mismo concepto de llave primaria y llave foranea del modelo relacional aplica a este modelo, es decir, las claves primarias son los atributos que permiten identificar a una fila de otra. Gracias a eso otorgan un valor único a cada fila. <span style="color:#ff0000">Se representan con un atributo con el título subrayado.</span>
+De todos los tipos de atributos, uno de los más importante que debes conocer son los atributos de clave primaria y foránea. El mismo concepto de llave primaria y llave foránea del modelo relacional aplica a este modelo, es decir, las claves primarias son los atributos que permiten identificar a una fila de otra. Gracias a eso otorgan un valor único a cada fila. 
+- Llaves primarias: <span style="color:#ff0000">Se representan con un atributo con el título subrayado.</span>.
+- Llaves foráneas: <span style="color:#ff0000">Se representan como un atributo normal pero en paréntesis se pone (fk).</span>.
 
-- **Entidades Fuertes**:
+#### **Entidades Fuertes**:
 Una entidad fuerte tiene una clave primaria propia que permite identificar de manera única a cada instancia. No depende de ninguna otra entidad para existir. <span style="color:#ff0000">Se representan de la misma forma que una entidad normal.</span>.
   - Ejemplo: `Usuario` Representa a los empleados que utilizan la aplicación. Cada usuario tiene un identificador único `id_usuario`, que actúa como clave primaria. Esta entidad no depende de ninguna otra para su existencia.
 
-- **Entidades débiles**: Una entidad débil no puede existir sin una entidad fuerte de la que depende. Su identificación requiere combinar su clave foranea con la clave primaria de la entidad fuerte asociada. <span style="color:#ff0000">Se representan con un rectangulo doble.</span>
+#### **Entidades débiles**: 
+Una entidad débil no puede existir sin una entidad fuerte de la que depende. Su identificación requiere combinar su clave foránea con la clave primaria de la entidad fuerte asociada. <span style="color:#ff0000">Se representan con un rectangulo doble.</span>
 
-  - Ejemplo: `Ubicaciones Frecuentes` - Representa las direcciones frecuentes asociadas a un usuario. Cada ubicación tiene una clave parcial `id_ubicacion`, pero necesita la clave primaria de la entidad Usuario (`id_usuario`) para ser identificada de manera única. Sin el usuario, estas ubicaciones no tienen sentido dentro del sistema.i
+  - Ejemplo: `Ubicacion Frecuente` - Representa las direcciones frecuentes asociadas a un usuario. Cada ubicación tiene una clave parcial `id_ubicacion`, pero necesita la clave primaria de la entidad Usuario (`id_usuario`) para ser identificada de manera única. Sin el usuario, estas ubicaciones no tienen sentido dentro del sistema.
 
 ## Otras notaciones
 
@@ -254,7 +254,7 @@ En estos 5 pasos puedes crear tu diagrama entidad relación:
 2. Identificación de las relaciones
 3. Identificación de la cardinalidad de las relaciones
 4. Identificación de atributos
-5. Create el diagrama ER
+5. Crear el diagrama ER
 
 ## Mejores prácticas para desarrollar efectivamente un diagrama ER
 - Eliminar entidades y relaciones redundantes
