@@ -584,6 +584,8 @@ id_estudiante ->> actividad
 # **Quinta Forma Normal (5FN)**
 La 5FN asegura que una tabla no pueda dividirse en tablas más pequeñas (usando atributos relacionados) y luego combinarse (con un join) para producir redundancias o inconsistencias.
 
+En términos más sencillos, 5FN garantiza que al unir las tablas no se pueda obtener información adicional que no estuviera ya disponible en las tablas separadas.
+
 ## **Ejemplo: Sistema Universitario**
 
 Imagina una base de datos universitaria con dos tablas normalizadas: **Cursos** e **Inscripciones**.
@@ -664,7 +666,7 @@ Utiliza este checklist para verificar si una tabla está en cada una de las form
 ---
 
 ### **Primera Forma Normal (1FN):**
-1. ¿Cada celda contiene un único valor (sin listas o conjuntos dentro de una celda)?
+1. ¿Cada celda contiene un único valor atómico (sin listas o conjuntos dentro de una celda)?
 2. ¿Todas las columnas tienen valores del mismo tipo de dato?
 3. ¿Cada fila es única (existe una clave primaria que identifica cada fila)?
 4. ¿El orden de las filas no transmite información?
@@ -720,6 +722,42 @@ Utiliza este checklist para verificar si una tabla está en cada una de las form
 3. Refactoriza la tabla para cumplir con las reglas de esa forma normal antes de avanzar al siguiente nivel.
 
 **Nota:** En la mayoría de los casos prácticos, alcanzar **3FN** o **BCNF** es suficiente para garantizar un diseño eficiente y libre de redundancias.
+
+## Desnormalización (Denormalization)
+La desnormalización se utiliza para modificar la estructura de una base de datos añadiendo datos redundantes. Esto significa combinar múltiples tablas para ejecutar consultas de forma más rápida. Es importante destacar que la desnormalización no implica revertir la normalización ni evitarla, sino que es una técnica de optimización que se aplica después de normalizar.
+
+En una base de datos tradicionalmente normalizada, los datos se almacenan en tablas separadas con el objetivo de minimizar la redundancia. Por ejemplo, podríamos tener una tabla de Cursos y otra de Profesores, donde la tabla de Cursos almacena solo el id_profesor pero no su nombre. Para obtener una lista de Cursos junto con el nombre del Profesor, necesitaríamos realizar un join entre ambas tablas. La desnormalización permite evitar estas uniones costosas al combinar datos relacionados en una sola tabla.
+
+### Ventajas de la Desnormalización
+1. **Mejora del rendimiento de consultas**: Reduce el número de uniones necesarias para recuperar datos.
+2. **Menor complejidad del esquema**: Combina datos relacionados en menos tablas, simplificando la estructura.
+3. **Facilidad de mantenimiento**: Reduce la cantidad de tablas que necesitan ser actualizadas.
+4. **Rendimiento de lectura mejorado**: Facilita el acceso directo a los datos.
+5. **Mejor escalabilidad**: Reduce el número de tablas, mejorando el rendimiento en sistemas grandes.
+
+### Desventajas de la Desnormalización
+1. **Menor integridad de los datos**: La redundancia puede generar inconsistencias.
+2. **Mayor complejidad**: Introducir datos redundantes puede complicar el diseño.
+3. **Mayor uso de almacenaymiento**: Los datos redundantes aumentan el tamaño de la base de datos.
+4. **Actualizaciones más complejas**: Modificar los datos puede ser más difícil debido a la redundancia.
+5. **Menor flexibilidad**: Adaptar el esquema a nuevos requerimientos puede ser más complicado.
+
+## Ejercicio en clase
+
+Normalizar hasta la 3FN la siguiente tabla que tiene el siguient esquema:
+```plaintext
+orden(id_orden, fecha, id_cliente, nombre_cliente, ciudad, id_articulo, nombre_articulo, cantidad, precio)
+```
+
+| **id_orden (PK)** | **fecha**   | **id_cliente** | **nombre_cliente**             | **ciudad**   | **id_articulo** | **nombre_articulo** | **cantidad** | **precio**   |
+|-------------------|-------------|----------------|--------------------------------|--------------|-----------------|---------------------|--------------|--------------|
+| 2301              | 23/02/11    | 101            | Perez Suarez Martin            | Bogotá       | 3786            | Red                 | 3            | 35           |
+| 2301              | 23/02/11    | 101            | Perez Suarez Martin            | Bogotá       | 4011            | Raqueta             | 6            | 65           |
+| 2301              | 23/02/11    | 101            | Perez Suarez Martin            | Bogotá       | 9132            | Escoba              | 8            | 4            |
+| 2302              | 25/02/11    | 107            | Gonzalez Rios Juan Fernando    | Medellín     | 5794            | Trapero             | 4            | 5            |
+| 2303              | 27/02/11    | 110            | Baron Gutierrez Pedro          | Cali         | 4011            | Raqueta             | 2            | 65           |
+| 2303              | 27/02/11    | 110            | Baron Gutierrez Pedro          | Cali         | 3141            | Funda               | 2            | Diez mil     |
+
 
 # Bibliografia
 
