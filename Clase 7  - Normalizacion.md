@@ -410,14 +410,14 @@ Mientras que 3FN permite que los atributos no clave dependan de **superclaves** 
    | 3                 | Harry Potter y la piedra... | J.K. Rowling       | Fantasía      |
 
 2. **Tabla de prestatarios**
-   | **id_prestatario** (PK) | **nombre**       | **id_libro** (FK) |
-   |-------------------------|------------------|-------------------|
-   | 1                       | John Doe         | 1                 |
-   | 2                       | Jane Doe         | 1                 |
-   | 3                       | James Brown      | 1                 |
-   | 4                       | Emily García     | 2                 |
-   | 5                       | David Lee        | 2                 |
-   | 6                       | Michael Chen     | 3                 |
+   | **id_prestatario** (PK) | **nombre**       | 
+   |-------------------------|------------------|
+   | 1                       | John Doe         | 
+   | 2                       | Jane Doe         |
+   | 3                       | James Brown      | 
+   | 4                       | Emily García     |
+   | 5                       | David Lee        |
+   | 6                       | Michael Chen     |
 
 3. **Tabla de préstamos**
    | **id_prestamo** (PK) | **id_libro** (FK) | **id_prestatario** (FK) | **fecha_prestamo** | **fecha_devolucion** |
