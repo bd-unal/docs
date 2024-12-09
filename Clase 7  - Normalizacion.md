@@ -584,90 +584,78 @@ id_estudiante ->> actividad
 # **Quinta Forma Normal (5FN)**
 La 5FN asegura que una tabla no pueda dividirse en tablas más pequeñas (usando atributos relacionados) y luego combinarse (con un join) para producir redundancias o inconsistencias.
 
-### **Ejemplo Sencillo: Estudiantes, Cursos y Profesores**
+## **Ejemplo: Sistema Universitario**
 
-Imagina una universidad que registra:
-1. Qué **estudiantes** están inscritos en qué **cursos**.
-2. Qué **profesores** enseñan qué **cursos**.
-3. Qué **estudiantes** tienen clases con qué **profesores**.
+Imagina una base de datos universitaria con dos tablas normalizadas: **Cursos** e **Inscripciones**.
 
-Tenemos la siguiente tabla:
+### **Tabla de Cursos**
+| **id_curso** (PK) | **nombre_curso**               | **departamento**   |
+|-------------------|--------------------------------|--------------------|
+| 101               | Introducción a la programación | Informática        |
+| 202               | Estructuras de datos y algoritmos | Informática        |
+| 301               | Desarrollo web I              | Informática        |
+| 401               | Inteligencia Artificial       | Informática        |
 
-| **id_estudiante** | **id_curso** | **id_profesor** |
-|-------------------|-------------|-----------------|
-| 1                 | matemáticas | López           |
-| 1                 | matemáticas | Pérez           |
-| 2                 | física      | López           |
-| 2                 | física      | García          |
-
----
-
-### **Dependencia de Unión**
-
-En esta tabla:
-- Cada **estudiante** está relacionado con un **curso**.
-- Cada **curso** está relacionado con varios **profesores**.
-- Sin embargo, no hay una relación directa entre **estudiantes y profesores**, solo están relacionados a través del curso.
-
-Esto genera redundancia, porque:
-- `López` y `Pérez` están repetidos en las filas relacionadas con `matemáticas`.
-- `López` y `García` están repetidos en las filas relacionadas con `física`.
+### **Tabla de Inscripciones**
+| **id_matricula** (PK) | **id_estudiante** (FK) | **id_curso** (FK) | **calificacion** |
+|-----------------------|-----------------------|-------------------|-----------|
+| 1                     | 12345                | 101               | 5.0         |
+| 2                     | 12345                | 202               | 3.5         |
+| 3                     | 56789                | 301               | 3.6        |
+| 4                     | 56789                | 401               | 4.2        |
 
 ---
 
-### **Problema de Redundancia**
+### **Problema de Dependencia de Unión**
 
-Si el profesor **Pérez** deja de enseñar **matemáticas**, tendrías que eliminar varias filas relacionadas con estudiantes. Si olvidas alguna fila, los datos quedarán inconsistentes.
+Supongamos que cada curso tiene un **requisito previo** que se almacena como una columna adicional en la tabla de **Cursos**:
 
----
+| **id_curso** (PK) | **nombre_curso**               | **departamento**   | **id_curso_requisito_previo** |
+|-------------------|--------------------------------|--------------------|-------------------------------|
+| 202               | Estructuras de datos y algoritmos | Informática        | 101                           |
+| 301               | Desarrollo web I              | Informática        | NULL                          |
+| 401               | Inteligencia Artificial       | Informática        | 202                           |
 
-### **Corrección: Forma Normalizada**
+Este diseño parece eficiente, pero introduce una **dependencia de unión** si necesitas consultar:
+1. Los cursos en los que está inscrito un estudiante.
+2. Los requisitos previos de esos cursos.
 
-Para cumplir con **5FN**, dividimos la tabla en tres tablas más pequeñas, eliminando la redundancia:
-
-#### **Tabla 1: estudiantes_cursos**
-| **id_estudiante** | **id_curso** |
-|-------------------|-------------|
-| 1                 | matemáticas |
-| 2                 | física      |
-
-#### **Tabla 2: cursos_profesores**
-| **id_curso** | **id_profesor** |
-|-------------|-----------------|
-| matemáticas | López           |
-| matemáticas | Pérez           |
-| física      | López           |
-| física      | García          |
-
-#### **Tabla 3: estudiantes_profesores**
-No es necesaria porque la relación entre **estudiantes y profesores** se define a través de los cursos.
+Esto requeriría:
+- Unir las tablas **Cursos** e **Inscripciones**.
+- Volver a unir la tabla **Cursos** consigo misma para recuperar los datos de los requisitos previos.
 
 ---
 
-### **¿Qué Logramos con 5FN?**
+### **Solución: Forma Normalizada (5FN)**
 
-1. **Eliminación de Redundancia:**
-   - Ahora no repetimos combinaciones innecesarias de datos.
-   
-2. **Facilidad de Mantenimiento:**
-   - Si el profesor **Pérez** deja de enseñar **matemáticas**, solo se elimina una fila en `cursos_profesores`.
+Para eliminar la dependencia de unión, separamos los requisitos previos en una tabla independiente:
 
-3. **Integridad de los Datos:**
-   - Al eliminar redundancia, no hay riesgo de inconsistencias.
+#### **Tabla de Requisitos Previos del Curso**
+| **id_curso** (FK) | **id_curso_requisito_previo** (FK) |
+|-------------------|-----------------------------------|
+| 202               | 101                               |
+| 301               | NULL                              |
+| 401               | 202                               |
 
 ---
 
-### **Representación de Dependencias de Unión**
+### **Ventajas de Cumplir con 5FN**
 
-En la tabla original:
-```plaintext
-id_estudiante ->> id_curso
-id_curso ->> id_profesor
-```
+1. **Eficiencia en Consultas:**
+   - Recuperar los cursos matriculados y sus requisitos previos ahora solo requiere una unión entre las tablas **Inscripciones** y **Requisitos Previos del Curso**.
 
-Al dividir en tablas más pequeñas:
-1. `id_estudiante ->> id_curso` en `estudiantes_cursos`.
-2. `id_curso ->> id_profesor` en `cursos_profesores`.
+2. **Eliminación de Redundancia:**
+   - Los requisitos previos se almacenan una sola vez, en lugar de repetirse en cada fila de la tabla **Cursos**.
+
+3. **Consistencia de los Datos:**
+   - Si cambian los prerrequisitos de un curso, solo necesitas actualizar la tabla **Requisitos Previos del Curso**, lo que reduce la probabilidad de inconsistencias.
+
+---
+
+## **Resumen**
+La **5FN** se aplica para eliminar dependencias complejas de unión, asegurando que los datos estén organizados de manera óptima y evitando redundancias. Aunque es una forma avanzada y poco común, es útil para bases de datos con relaciones altamente interconectadas.
+
+---
 
 ## **En resumen: Checklist de Validación de Formas Normales**
 
