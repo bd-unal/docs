@@ -397,6 +397,86 @@ Mientras que 3FN permite que los atributos no clave dependan de **superclaves** 
 - BCNF exige que todos los atributos dependan exclusivamente de la **clave candidata completa**.
 
 ---
+
+## **Ejemplo: Sistema de Préstamos de Libros**
+
+### **Tablas iniciales en 3FN**
+
+1. **Tabla de libros**
+   | **id_libro** (PK) | **titulo**                   | **autor**          | **genero**    |
+   |-------------------|-----------------------------|--------------------|---------------|
+   | 1                 | Matar a un ruiseñor         | Harper Lee         | Ficción       |
+   | 2                 | El Señor de los Anillos     | J. R. R. Tolkien   | Fantasía      |
+   | 3                 | Harry Potter y la piedra... | J.K. Rowling       | Fantasía      |
+
+2. **Tabla de prestatarios**
+   | **id_prestatario** (PK) | **nombre**       | **id_libro** (FK) |
+   |-------------------------|------------------|-------------------|
+   | 1                       | John Doe         | 1                 |
+   | 2                       | Jane Doe         | 1                 |
+   | 3                       | James Brown      | 1                 |
+   | 4                       | Emily García     | 2                 |
+   | 5                       | David Lee        | 2                 |
+   | 6                       | Michael Chen     | 3                 |
+
+3. **Tabla de préstamos**
+   | **id_prestamo** (PK) | **id_libro** (FK) | **id_prestatario** (FK) | **fecha_prestamo** | **fecha_devolucion** |
+   |----------------------|-------------------|-------------------------|--------------------|-----------------------|
+   | 1                    | 1                 | 1                       | 2024-05-04         | 2024-05-20            |
+   | 2                    | 2                 | 4                       | 2024-05-04         | 2024-05-18            |
+   | 3                    | 3                 | 6                       | 2024-05-04         | 2024-05-10            |
+
+---
+
+### **Problema: Dependencia Oculta**
+
+En la tabla `préstamos`, suponemos que:
+- Un prestatario **no puede tomar prestado el mismo libro dos veces al mismo tiempo**.
+- Esto implica que la combinación de `id_libro` y `id_prestatario` identifica de manera única un registro de préstamo.
+
+Dependencia funcional:
+```plaintext
+{id_libro, id_prestatario} -> {id_prestamo}
+```
+
+Sin embargo, esto viola BCNF porque:
+- La combinación {`id_libro`, `id_prestatario`} actúa como una clave candidata, pero `id_prestamo` es la clave primaria.
+
+### **Solución**
+
+Para cumplir con BCNF, podemos aplicar dos enfoques:
+
+#### **Enfoque 1: Descomposición de la Tabla**
+Dividimos la tabla de `préstamos` en dos tablas:
+
+1. **Tabla de préstamos básicos**
+   | **id_prestamo** (PK) | **fecha_prestamo** | **fecha_devolucion** |
+   |----------------------|--------------------|-----------------------|
+   | 1                    | 2024-05-04         | 2024-05-20            |
+   | 2                    | 2024-05-04         | 2024-05-18            |
+   | 3                    | 2024-05-04         | 2024-05-10            |
+
+2. **Tabla de relaciones préstamo-libro-prestatario**
+   | **id_libro** (FK) | **id_prestatario** (FK) | **id_prestamo** (FK) |
+   |-------------------|-------------------------|----------------------|
+   | 1                 | 1                       | 1                    |
+   | 2                 | 4                       | 2                    |
+   | 3                 | 6                       | 3                    |
+
+---
+
+#### **Enfoque 2: Clave Primaria Compuesta**
+Podemos hacer que la clave primaria de la tabla `préstamos` sea la combinación `{id_libro, id_prestatario}`:
+
+| **id_libro** (PK) | **id_prestatario** (PK) | **fecha_prestamo** | **fecha_devolucion** |
+|-------------------|-------------------------|--------------------|-----------------------|
+| 1                 | 1                       | 2024-05-04         | 2024-05-20            |
+| 2                 | 4                       | 2024-05-04         | 2024-05-18            |
+| 3                 | 6                       | 2024-05-04         | 2024-05-10            |
+
+> Nota: Este enfoque no funciona si un prestatario puede tomar prestado el mismo libro varias veces, ya que cada combinación debe ser única.
+
+---
 ## **Resumen**
 - **Tercera Forma Normal (3FN):** Los atributos no clave deben depender de la clave, la clave completa y nada más que la clave.
 - **BCNF:** Extiende esta regla para garantizar que incluso las claves candidatas no introduzcan dependencias funcionales no deseadas.
