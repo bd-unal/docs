@@ -666,10 +666,25 @@ Utiliza este checklist para verificar si una tabla está en cada una de las form
 ---
 
 ### **Primera Forma Normal (1FN):**
-1. ¿Cada celda contiene un único valor atómico (sin listas o conjuntos dentro de una celda)?
-2. ¿Todas las columnas tienen valores del mismo tipo de dato?
-3. ¿Cada fila es única (existe una clave primaria que identifica cada fila)?
-4. ¿El orden de las filas no transmite información?
+1. **¿El orden de las filas no transmite información?**
+   - Las filas deben ser independientes entre sí, y su orden no debe tener significado.
+
+2. **¿Todas las columnas contienen valores del mismo tipo de dato?**
+   - Cada columna debe almacenar un único tipo de dato (por ejemplo, texto, números o fechas).
+
+3. **¿Cada celda contiene un único valor atómico?**
+   - No debe haber listas, conjuntos o valores compuestos en una celda. Cada celda debe contener un solo valor.
+
+4. **¿Cada fila es única?**
+   - Debe existir una clave primaria que identifique de manera única a cada fila.
+
+5. **¿No hay grupos repetidos?**
+   - Los datos no deben estar organizados en grupos repetidos dentro de la misma tabla.
+
+---
+
+✅ **Si respondes "Sí" a todas las preguntas, la tabla está en 1FN.**
+
 
 ✅ Si respondes **sí** a todas las preguntas, la tabla está en **1FN**.
 
@@ -677,7 +692,7 @@ Utiliza este checklist para verificar si una tabla está en cada una de las form
 
 ### **Segunda Forma Normal (2FN):**
 1. ¿La tabla ya está en 1FN?
-2. Si la clave primaria es compuesta, ¿cada atributo no clave depende de la clave completa (no solo de una parte de ella)?
+2. ¿Cada atributo no clave depende de la clave completa (no solo de una parte de ella)?
 3. ¿No hay dependencias parciales de atributos no clave?
 
 ✅ Si respondes **sí** a todas las preguntas, la tabla está en **2FN**.
@@ -749,7 +764,7 @@ Normalizar hasta la 3FN la siguiente tabla que tiene el siguient esquema:
 orden(id_orden, fecha, id_cliente, nombre_cliente, ciudad, id_articulo, nombre_articulo, cantidad, precio)
 ```
 
-| **id_orden (PK)** | **fecha**   | **id_cliente** | **nombre_cliente**             | **ciudad**   | **id_articulo** | **nombre_articulo** | **cantidad** | **precio**   |
+| **id_orden (PK)** | **fecha**   | **id_cliente** | **nombre_cliente**             | **ciudad**   | **id_articulo (PK)** | **nombre_articulo** | **cantidad** | **precio**   |
 |-------------------|-------------|----------------|--------------------------------|--------------|-----------------|---------------------|--------------|--------------|
 | 2301              | 23/02/11    | 101            | Perez Suarez Martin            | Bogotá       | 3786            | Red                 | 3            | 35           |
 | 2301              | 23/02/11    | 101            | Perez Suarez Martin            | Bogotá       | 4011            | Raqueta             | 6            | 65           |
