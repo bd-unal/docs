@@ -738,7 +738,7 @@ En una base de datos tradicionalmente normalizada, los datos se almacenan en tab
 ### Desventajas de la Desnormalización
 1. **Menor integridad de los datos**: La redundancia puede generar inconsistencias.
 2. **Mayor complejidad**: Introducir datos redundantes puede complicar el diseño.
-3. **Mayor uso de almacenaymiento**: Los datos redundantes aumentan el tamaño de la base de datos.
+3. **Mayor uso de almacenamiento**: Los datos redundantes aumentan el tamaño de la base de datos.
 4. **Actualizaciones más complejas**: Modificar los datos puede ser más difícil debido a la redundancia.
 5. **Menor flexibilidad**: Adaptar el esquema a nuevos requerimientos puede ser más complicado.
 
