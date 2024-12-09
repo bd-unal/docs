@@ -502,84 +502,68 @@ Se representa con `->>`:
 
 ---
 
-## **Ejemplo: Forma Incorrecta**
-
-Supongamos que estamos diseñando una base de datos para una escuela de idiomas. Queremos registrar:
-1. Los **idiomas** que habla cada estudiante.
-2. Las **actividades extracurriculares** en las que participa cada estudiante.
-
-Podríamos estructurar la tabla como esta:
-
-| **id_estudiante** | **idioma**      | **actividad**      |
-|-------------------|----------------|-------------------|
-| 1                 | inglés         | baloncesto        |
-| 1                 | francés        | baloncesto        |
-| 1                 | inglés         | ajedrez           |
-| 1                 | francés        | ajedrez           |
-| 2                 | español        | fútbol            |
-| 2                 | alemán         | fútbol            |
-
-### **Dependencias Multivaluadas**
-En esta tabla:
-- Cada `id_estudiante` tiene una lista de **idiomas** y una lista de **actividades**.
-- Los idiomas y las actividades son **independientes entre sí**.
-
-Representación de dependencias multivaluadas:
-```plaintext
-id_estudiante ->> idioma
-id_estudiante ->> actividad
-```
-
-## **Problemas en la Forma Incorrecta**
-
-1. **Redundancia:**
-   - El estudiante con `id_estudiante = 1` repite `baloncesto` para cada idioma (`inglés` y `francés`).
-   - Lo mismo ocurre con `ajedrez`.
-
-2. **Dificultad de Mantenimiento:**
-   - Si el estudiante `1` aprende un nuevo idioma o participa en una nueva actividad, se deben agregar múltiples filas, lo que incrementa el riesgo de inconsistencias.
+## **Ejemplo**
+Imagina una base de datos que almacena información sobre publicaciones. Vamos a considerar una tabla llamada **Publicaciones** con las columnas `título`, `autor`, `año_publicación` y `palabras clave`.
 
 ---
 
-## **Corrección: Forma Normalizada**
+### **Tabla Inicial: Publicaciones**
+| **publication_id** (PK) | **title**               | **autor**          | **publication_year** | **palabras_clave**          |
+|-------------------------|------------------------|--------------------|----------------------|-----------------------------|
+| 1                       | Matar a un ruiseñor     | Harper Lee         | 1960                 | Mayoría de edad, Legal      |
+| 2                       | El Señor de los Anillos | J. R. R. Tolkien   | 1954                 | Fantasía, Épica, Aventura   |
+| 3                       | Orgullo y prejuicio     | Jane Austen        | 1813                 | Romance, Comentario social  |
 
-Para cumplir con la **Cuarta Forma Normal**, dividimos la tabla en dos tablas separadas, porque las dependencias multivaluadas (`idioma` y `actividad`) son independientes y no deberían estar en la misma tabla.
+---
 
-### **Tabla 1: idiomas_estudiante**
-| **id_estudiante** | **idioma**      |
-|-------------------|----------------|
-| 1                 | inglés         |
-| 1                 | francés        |
-| 2                 | español        |
-| 2                 | alemán         |
+## **Problema**
+La tabla anterior viola la **4FN** debido a la dependencia multivaluada en la columna `palabras_clave`:
+- Una publicación puede tener múltiples palabras clave (`Mayoría de edad`, `Legal`, etc.).
+- Estas palabras clave son independientes unas de otras, pero dependen de `publication_id`.
 
-Representación de dependencia:
-```plaintext
-id_estudiante ->> idioma
-```
+Este diseño introduce redundancia y dificulta las consultas y el mantenimiento.
 
-### **Tabla 2: actividades_estudiante**
-| **id_estudiante** | **actividad**   |
-|-------------------|----------------|
-| 1                 | baloncesto     |
-| 1                 | ajedrez        |
-| 2                 | fútbol         |
+---
 
-Representación de dependencia:
-```plaintext
-id_estudiante ->> actividad
-```
-## **Ventajas de Cumplir con 4FN**
+## **Solución**
+Para cumplir con la **4FN**, descomponemos la tabla original en dos tablas relacionadas. Creamos una nueva tabla para manejar las palabras clave de forma separada.
 
-1. **Eliminación de Redundancia:**
-   - Ya no hay combinaciones duplicadas entre idiomas y actividades.
+### **Tabla de Publicaciones**
+| **publication_id** (PK) | **title**               | **autor**          | **publication_year** |
+|-------------------------|------------------------|--------------------|----------------------|
+| 1                       | Matar a un ruiseñor     | Harper Lee         | 1960                 |
+| 2                       | El Señor de los Anillos | J. R. R. Tolkien   | 1954                 |
+| 3                       | Orgullo y prejuicio     | Jane Austen        | 1813                 |
+
+### **Tabla de Palabras Clave por Publicación**
+| **publication_id** (FK) | **palabra_clave**       |
+|-------------------------|------------------------|
+| 1                       | Mayoría de edad        |
+| 1                       | Legal                 |
+| 2                       | Fantasía              |
+| 2                       | Épica                 |
+| 2                       | Aventura              |
+| 3                       | Romance               |
+| 3                       | Comentario social     |
+
+---
+
+## **Ventajas de la Solución**
+1. **Reducción de Redundancia:**
+   - Cada palabra clave se almacena una sola vez y está relacionada únicamente con su publicación.
 
 2. **Facilidad de Mantenimiento:**
-   - Si el estudiante `1` aprende un nuevo idioma, como `alemán`, solo se agrega a la tabla `idiomas_estudiante`.
-   - Si el estudiante `1` comienza una nueva actividad, como `natación`, solo se agrega a la tabla `actividades_estudiante`.
+   - Si una publicación adquiere nuevas palabras clave, se pueden agregar fácilmente nuevas filas sin alterar la estructura.
 
-3. **Integridad de los Datos:**
-   - Se eliminan las posibilidades de inconsistencias al separar las dependencias independientes.
+3. **Mejor Consistencia:**
+   - Eliminar dependencias multivaluadas garantiza que cada palabra clave sea independiente.
+
+---
+
+## **Resumen**
+La nueva tabla **Palabras Clave por Publicación** establece una relación de muchos a muchos entre publicaciones y palabras clave. Ahora, cada publicación puede tener varias palabras clave asociadas mediante `publication_id`, cumpliendo con la **Cuarta Forma Normal (4FN)**.
+
+---
 
 # **Quinta Forma Normal (5FN)**
 La 5FN asegura que una tabla no pueda dividirse en tablas más pequeñas (usando atributos relacionados) y luego combinarse (con un join) para producir redundancias o inconsistencias.
