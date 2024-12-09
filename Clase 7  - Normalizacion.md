@@ -656,5 +656,6 @@ Utiliza este checklist para verificar si una tabla está en cada una de las form
 # Bibliografia
 
 - Avi Silberschatz, Henry F. Korth, S. Sudarshan (2019) - Database System Concepts, Seventh Edition, McGraw-Hill.
+- https://www.geeksforgeeks.org/normal-forms-in-dbms/
 - https://www.youtube.com/watch?v=GFQaEYEc8_8
 - https://dbs.academy.lv/lection/dbs_LS07ENa_normalization.pdf
