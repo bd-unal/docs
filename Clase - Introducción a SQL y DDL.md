@@ -520,19 +520,17 @@ empresa_id (entero, clave foránea que referencia a empresa_id en la tabla empre
 
 2. Escribe una sentencia SQL para agregar una columna `director` (varchar(50)) a la tabla `peliculas_renombradas`.
 
-3. Escribe una sentencia SQL para agregar una columna `id_unico` como la primera columna de la tabla `peliculas_renombrada`s.
+3. Escribe una sentencia SQL para cambiar el tipo de dato de la columna `calificacion` a INTEGER.
 
-4. Escribe una sentencia SQL para agregar una columna `descripcion` después de la columna `titulo` en la tabla `peliculas_renombradas`.
+4. Escribe una sentencia SQL para eliminar la columna `director` de la tabla `peliculas_renombradas`.
 
-5. Escribe una sentencia SQL para cambiar el tipo de dato de la columna `calificacion` a INTEGER.
+5. Escribe una sentencia SQL para agregar una clave primaria a la columna `pelicula_id` en la tabla `peliculas_renombradas`.
 
-6. Escribe una sentencia SQL para eliminar la columna `director` de la tabla `peliculas_renombradas`.
+6. Escribe una sentencia SQL para eliminar la clave primaria existente de la tabla peliculas_renombradas. 
 
-7. Escribe una sentencia SQL para eliminar la clave primaria existente de la tabla peliculas_renombradas.
+7. Elimina la constraint `fk_empresa_id` de la tabla ofertas empleo.
 
-8. Escribe una sentencia SQL para agregar una clave primaria a la columna `pelicula_id` en la tabla `peliculas_renombradas`.
-
-9. Escribe una sentencia SQL para agregar una restricción de clave foránea llamada `fk_empresa_id` en la columna `empresa_id` de la tabla `ofertas_empleo`, haciendo referencia a la clave primaria `empresa_id` de la tabla `empresas`.
+8. Escribe una sentencia SQL para agregar una restricción de clave foránea llamada `fk_empresa_id` en la columna `empresa_id` de la tabla `ofertas_empleo`, haciendo referencia a la clave primaria `empresa_id` de la tabla `empresas`.
 
 ### `RENAME`
 1. Renombrar tabla `ofertas_empleo` a `empleos`
@@ -541,18 +539,21 @@ empresa_id (entero, clave foránea que referencia a empresa_id en la tabla empre
 
 3. Renombrar columna `empresa_id` a `id_empresa`
 
+4. Vuelve a renombrar la tabla `empleos` a `ofertas_empleo`
+
 ### `TRUNCATE`
-1. Escribe una sentencia SQL para eliminar todos los registros de la tabla `peliculas` sin eliminar su estructura.
+1. Escribe una sentencia SQL para eliminar todos los registros de la tabla `peliculas_renombradas` sin eliminar su estructura.
 
 2. Escribe una sentencia SQL para eliminar todos los registros de la tabla `ofertas_empleo` y restablecer el contador de autoincremento.
 
 ### `DROP`
-1. Escribe una sentencia SQL para eliminar por completo la tabla `peliculas`.
+1. Escribe una sentencia SQL para eliminar por completo la tabla `peliculas_renombradas`.
 
 2. Escribe una sentencia SQL para eliminar la clave foránea llamada `fk_empresa_id` de la tabla `ofertas_empleo`.
 
 3. Escribe una sentencia SQL para eliminar las tablas `ofertas_empleo` y `empresas` en una sola instrucción.
 
+### SEGUIR PRACTICANDO....
 
 ## Bibliografía
 - Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database System Concepts (7th ed.). McGraw Hill Education.
