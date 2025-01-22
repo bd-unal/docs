@@ -11,6 +11,7 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 6. [Clase: Modelo ER a Modelo Relacional](Clase%20-%20Modelo%20ER%20a%20Modelo%20Relacional.md)
 7. [Clase: Normalización](Clase%20%20-%20Normalizacion.md)
 8. [Clase: Modelo físico con Visual Paradigm](Clase%20-%20Modelo%20relacional.md)
+8. [Clase: Introducción a SQL y DDL](Clase%20-%20Introducci%C3%B3n%20a%20SQL%20y%20DDL.md)
 
 ## Talleres
 - [Taller #1: Introducción a PostgreSQL, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231.md)
