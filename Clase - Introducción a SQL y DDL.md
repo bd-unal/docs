@@ -16,7 +16,7 @@ En 1977 se lanza la primera base de datos relacional conocida como (System R)[ht
 
 SQL se comercializó por primera vez en 1979 por Oracle (en esa época la empresa no se llamaba Oracle sino Relational Software) y rápidamente se convirtió en el estándar mundial para los sistemas de gestión de bases de datos relacionales (RDBMS). Fue estandarizado por el **American National Standards Institute (ANSI)** en 1986 y por la **International Organization for Standardization (ISO)** en 1987.
 
-La mayoría de los proveedores de bases de datos relacionales siguen la última versión del estándar, que, al momento de escribir este artículo, es (ISO/IEC 9075-1:2023)[https://cdn.standards.iteh.ai/samples/76583/937e2166ff594619a4fc86cdde8cade3/ISO-IEC-9075-1-2023.pdf].
+La mayoría de los proveedores de bases de datos relacionales siguen la última versión del estándar, que, al momento de escribir este artículo, es [ISO/IEC 9075-1:2023](https://cdn.standards.iteh.ai/samples/76583/937e2166ff594619a4fc86cdde8cade3/ISO-IEC-9075-1-2023.pdf).
 
 ---
 
