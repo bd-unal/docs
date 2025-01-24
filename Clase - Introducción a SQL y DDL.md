@@ -12,7 +12,7 @@ Aunque SQL es conocido como un "lenguaje de consultas", puede realizar muchas m�
 
 SQL fue introducido en la década de 1970 por los científicos de IBM **Donald Chamberlin** y **Raymond Boyce**. Inicialmente se llamaba **Structured English Query Language (SEQUEL)** antes de ser abreviado como SQL. Este lenguaje fue diseñado a partir del concepto de modelos relacionales de Edgar Codd.
 
-En 1977 se lanza la primera base de datos relacional conocida como (System R)[https://people.eecs.berkeley.edu/~brewer/cs262/SystemR.pdf] que a su vez introduce el lenguaje SQL. El nombre del lenguaje se acortó a SQL (pero aún se pronuncia “sequel”) debido a un problema de derechos de autor. 
+En 1977 se lanza la primera base de datos relacional conocida como [System R](https://people.eecs.berkeley.edu/~brewer/cs262/SystemR.pdf) que a su vez introduce el lenguaje SQL. El nombre del lenguaje se acortó a SQL (pero aún se pronuncia “sequel”) debido a un problema de derechos de autor. 
 
 SQL se comercializó por primera vez en 1979 por Oracle (en esa época la empresa no se llamaba Oracle sino Relational Software) y rápidamente se convirtió en el estándar mundial para los sistemas de gestión de bases de datos relacionales (RDBMS). Fue estandarizado por el **American National Standards Institute (ANSI)** en 1986 y por la **International Organization for Standardization (ISO)** en 1987.
 
@@ -315,6 +315,12 @@ CREATE TABLE facturas (
   id_factura SERIAL PRIMARY KEY,
   id_cliente INT REFERENCES clientes (id_cliente)
 );
+```
+
+> PUEDES USAR EL SIGUIENTE QUERY PARA LISTAR LOS CONSTRAINTS DE UNA TABLA:
+```SQL
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME='tablename'
 ```
 
 ### `SERIAL` y `SEQUENCE` en PostgreSQL
