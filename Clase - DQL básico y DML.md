@@ -246,8 +246,9 @@ WHERE id_empleado IN (3, 5, 7);
 ```
 ---
 ### Eliminar filas de tablas relacionadas
+
 Cuando necesitas eliminar filas de tablas relacionadas, debes asegurarte de mantener la integridad referencial. Esto puede lograrse configurando acciones como `ON DELETE CASCADE` en las claves foráneas o eliminando manualmente los registros en un orden específico.
----
+
 #### Eliminación manual de registros relacionados
 
 Supongamos que tienes las tablas `departamento` y `empleado`, donde `empleado` tiene una clave foránea `id_departamento` que hace referencia a la tabla `departamento`. Si deseas eliminar un departamento y todos los empleados relacionados, puedes hacerlo manualmente de la siguiente manera:
@@ -261,7 +262,7 @@ WHERE id_departamento = 2;
 DELETE FROM departamento
 WHERE id_departamento = 2;
 ```
----
+
 #### Uso de ON DELETE CASCADE
 Si la clave foránea en la tabla empleado está configurada con `ON DELETE CASCADE`, los registros relacionados en `empleado` se eliminarán automáticamente al eliminar un registro en `departamento`.
 
