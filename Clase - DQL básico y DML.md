@@ -436,12 +436,12 @@ Ejecutar los siguientes queries:
 **1. INSERT**
 - Inserta 3 países adicionales en la tabla `pais`.
 - Agrega nuevas ubicaciones asociadas a los países que acabas de insertar.
-- Añade un departamento nuevo en una de las ubicaciones creadas.
-- Agrega dos nuevos empleados al departamento recién creado.
+- Añade un departamento nuevo en una de las ubicaciones creadas llamado `Investigación y Desarrollo`.
+- Agrega dos nuevos empleados al departamento recién creado. Uno de ellos llamado Gabriel Santos y el otro llamado Fernanda Rojas.
 
 **2. UPDATE**
 - Aumenta el salario de `Fernanda Rojas` en un 10%.
-- Cambia la ubicación del departamento `Investigación y Desarrollo` a la nueva sede en Perú.
+- Cambia la ubicación del departamento `Investigación y Desarrollo` a una de las nuevas ubicaciones.
 - Cambia el cargo de `Gabriel Santos` a "Jefe de Desarrollo" con un aumento de 15%.
 
 **3. DELETE**
@@ -453,7 +453,7 @@ Ejecutar los siguientes queries:
 - Consulta todos los empleados de la empresa.
 - Muestra los empleados del departamento de `Marketing`.
 - Consulta los empleados con salario mayor a 5,000,000.
-- Busca empleados cuyo apellido termine en "ez".
+- Busca empleados cuyo apellido termine contenga "pe".
 - Obtén la información de empleados sin manager.
 
 **5. Desafío adicional**
