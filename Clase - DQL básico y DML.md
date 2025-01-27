@@ -456,7 +456,7 @@ Ejecutar los siguientes queries:
 - Busca empleados cuyo apellido termine contenga "pe".
 - Obtén la información de empleados sin manager.
 
-**5. Desafío adicional**
+**5. Desafío adicional (opcional)**
 - Crea una consulta que muestre el `nombre`, `apellido`, `salario` y el `nombre del departamento` de cada empleado.
 
 ### SEGUIR PRACTICANDO....
