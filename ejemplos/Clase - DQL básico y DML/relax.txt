@@ -1,0 +1,38 @@
+group: empleados_trabajo
+
+trabajo = {
+  id_trabajo:number, nombre_trabajo:string, salario_minimo:number, salario_maximo:number
+  1, "Desarrollador de Software", 3000000, 12000000
+  2, "Científico de Datos", 5000000, 15000000
+  3, "Director de Operaciones", 4000000, 8000000
+  4, "Practicante de TI", 1300000, 1700000
+}
+
+pais = {
+  id_pais:number, nombre_pais:string
+  1, "Colombia"
+  2, "Argentina"
+  3, "México"
+}
+
+ubicacion = {
+  id_ubicacion:number, direccion:string, codigo_postal:number, ciudad:string, estado_provincia:string, id_pais:number
+  1, "Calle 123", 110111, "Bogotá", "Cundinamarca", 1
+  2, "Av. Corrientes", 1001, "Buenos Aires", "Buenos Aires", 2
+  3, "Reforma 200", 66000, "CDMX", "Ciudad de México", 3
+}
+
+departamento = {
+  id_departamento:number, nombre_departamento:string, id_ubicacion:number
+  1, "TI", 1
+  2, "Marketing", 2
+  3, "Ventas", 3
+}
+
+empleado = {
+  id_empleado:number, nombre:string, apellido:string, email:string, telefono:string, fecha_contratacion:string, salario:number, id_trabajo:number, id_departamento:number, id_manager:number
+  101, "Juan", "Pérez", "juan.perez@empresa.com", "3011111111", "", 5000000, 1, 1, NULL
+  102, "Ana", "López", "ana.lopez@empresa.com", "3022222222", "2023-06-15", 4000000, 2, 2, 101
+  103, "Luis", "Gómez", "luis.gomez@empresa.com", "3033333333", "2021-09-20", 4500000, 3, 3, 101
+  104, "Sofía", "Martínez", "sofia.martinez@empresa.com", "3044444444", "2020-07-30", 2000000, 4, 1, 102
+}
