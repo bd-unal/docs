@@ -21,6 +21,81 @@ Para esto, iniciaremos creando las tablas usando lo aprendido en la clase anteri
 
 ![Diagrama físico](images/dql-dml-1.png)  
 
+### Scripts para crear la estructura
+```sql
+-- Crear tabla trabajo
+CREATE TABLE trabajo (
+	id_trabajo SMALLSERIAL PRIMARY KEY,
+	nombre_trabajo VARCHAR(100) NOT NULL,
+	salario_maximo INT,
+	salario_minimo INT
+);
+-- Crear tabla pais
+CREATE TABLE pais(
+	id_pais SMALLSERIAL PRIMARY KEY,
+	nombre_pais VARCHAR(50) NOT NULL
+);
+
+-- Crear tabla ubicación
+CREATE TABLE ubicacion(
+	id_ubicacion SMALLSERIAL PRIMARY KEY,
+	direccion VARCHAR(300) NOT NULL,
+	codigo_postal INT NOT NULL,
+	ciudad VARCHAR(50) NOT NULL,
+	estado_provincia VARCHAR(50),
+	id_pais SMALLINT NOT NULL,
+	CONSTRAINT fk_pais FOREIGN KEY (id_pais) REFERENCES pais (id_pais)
+);
+
+-- Crear tabla departamento
+CREATE TABLE departamento (
+	id_departamento SMALLSERIAL PRIMARY KEY,
+	nombre_departamento VARCHAR(50) NOT NULL,
+	id_ubicacion SMALLINT NOT NULL,
+	CONSTRAINT fk_ubicacion FOREIGN KEY (id_ubicacion) REFERENCES ubicacion (id_ubicacion)
+);
+
+-- Crear tabla empleado
+CREATE TABLE empleado (
+ 	id_empleado SERIAL PRIMARY KEY,
+	nombre VARCHAR(50) NOT NULL,
+	apellido VARCHAR(50) NOT NULL,
+	email VARCHAR(320) NOT NULL UNIQUE,
+	telefono VARCHAR(20),
+	fecha_contratacion DATE,
+	salario INT NOT NULL,
+	id_trabajo SMALLINT NOT NULL,
+	id_departamento SMALLINT NOT NULL,
+	id_manager INT,
+	CONSTRAINT fk_trabajo FOREIGN KEY (id_trabajo) REFERENCES trabajo (id_trabajo),
+	CONSTRAINT fk_departamento FOREIGN KEY (id_departamento) REFERENCES departamento (id_departamento),
+	CONSTRAINT fk_manager FOREIGN KEY (id_manager) REFERENCES empleado (id_empleado)
+ );
+ 
+-- AGREGAR valores por defecto
+-- FECHA CONTRATACION
+ALTER TABLE empleado
+ALTER COLUMN fecha_contratacion SET DEFAULT NOW();
+
+-- Nombre trabajo
+ALTER TABLE trabajo
+ALTER COLUMN nombre_trabajo SET DEFAULT '';
+
+-- CHECK salarios
+-- FORMA 1
+ALTER TABLE trabajo
+ADD CONSTRAINT check_salario_minimo CHECK (salario_minimo > 0),
+ADD CONSTRAINT check_salario_maximo CHECK (salario_maximo > 0);
+
+-- FORMA 2
+ALTER TABLE trabajo
+ADD CONSTRAINT check_salarios CHECK (salario_minimo > 0 AND salario_maximo > 0);
+
+-- Check salario empleado
+ALTER TABLE empleado
+ADD CONSTRAINT check_salario CHECK (salario > 0);
+```
+
 **Detalles importantes a considerar al momento de crear las tablas:**  
 1. Todos los IDs son autoincrementales.  
 2. Algunos IDs tienen el tipo de dato `SMALLSERIAL`
