@@ -17,6 +17,7 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 ## Talleres
 - [Taller #1: Introducción a PostgreSQL, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231.md)
 - [Taller #2: Práctica del Modelo Entidad-Relación (ER)](Talleres/Taller%20%232/README.md)
+- [Taller #3: SQL (DDL, DML y DQL)](Talleres%2FTaller%20%233.md)
 
 ## Proyectos Finales
 - [Proyecto Final](Proyecto%20final.md)
