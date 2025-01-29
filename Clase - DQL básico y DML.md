@@ -527,12 +527,14 @@ Ejecutar los siguientes queries:
 **4. SELECT**
 - Consulta todos los empleados de la empresa.
 - Muestra los empleados del departamento de `Marketing`.
-- Consulta los empleados con salario mayor a 5,000,000.
+- Consulta los empleados con salario mayor a `5,000,000`.
 - Busca empleados cuyo apellido termine contenga "pe".
 - Obtén la información de empleados sin manager.
 
 **5. Desafío adicional (opcional)**
 - Crea una consulta que muestre el `nombre`, `apellido`, `salario` y el `nombre del departamento` de cada empleado.
+
+> Click [aquí](ejemplos%2FClase%20-%20DQL%20b%C3%A1sico%20y%20DML%2FClase%20-%20DQL%20b%C3%A1sico%20y%20DML.sql) para ver la solución de los ejercicios.
 
 ### SEGUIR PRACTICANDO....
 Algunos links para practicar:
