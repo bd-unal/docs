@@ -13,6 +13,7 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 8. [Clase: Modelo físico con Visual Paradigm](Clase%20-%20Modelo%20relacional.md)
 9. [Clase: Introducción a SQL y DDL](Clase%20-%20Introducci%C3%B3n%20a%20SQL%20y%20DDL.md)
 10. [Clase: DQL Básico y DML](Clase%20-%20DQL%20b%C3%A1sico%20y%20DML.md)
+10. [Clase: DQL Avanzado](Clase%20-%20DQL%20Avanzado.md)
 
 ## Talleres
 - [Taller #1: Introducción a PostgreSQL, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231.md)

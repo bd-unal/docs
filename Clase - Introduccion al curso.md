@@ -76,7 +76,12 @@ Los siguientes son temas que el estudiante aprenderá en este curso o perfeccion
 ## Notas
 
 - Proyecto Final - **40%**
+  - Primera Entrega - **15%**
+  - Segunda Entrega - **10%**
+  - Tercera Entrega - **15%**
 - Parciales (2) - **20%**
+  - Parcial 1 - **10%**
+  - Parcial 2 - **10%**
 - Talleres en clase y Quizzes - **30%**
 - Asistencia y participación en clase - **10%**
 
