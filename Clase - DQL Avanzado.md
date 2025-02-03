@@ -402,7 +402,9 @@ GROUP BY "lista-de-columnas";
 
 #### **Ejemplo: Calcular el promedio de duración de las películas por cada rating**
 ```sql
-SELECT rating, AVG(length) FROM film GROUP BY rating;
+SELECT rating, AVG(length) 
+FROM film 
+GROUP BY rating;
 ```
 
 #### **Ejemplo: Calcular la duración mínima, máxima, total y promedio por rating**
