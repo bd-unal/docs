@@ -81,7 +81,7 @@ Las palabras clave `ALL` y `DISTINCT` se utilizan para definir si se deben selec
   Muestra **todas** las filas, incluyendo los valores duplicados en la columna o columnas seleccionadas.
 
 - `DISTINCT`:  
-  Elimina los registros duplicados y solo muestra los valores únicos en las columnas seleccionadas después del `SELECT`.
+  Elimina los registros duplicados y sólo muestra los valores únicos en las columnas seleccionadas después del `SELECT`.
 
 Si no se especifica ninguna opción, `ALL` es el comportamiento predeterminado.
 
@@ -109,7 +109,7 @@ FROM film_category;
 
 **Diferencia clave:**  
 - La primera consulta devuelve **todas** las apariciones de `category_id`, incluyendo duplicados.  
-- La segunda consulta elimina duplicados y solo muestra **valores únicos**.
+- La segunda consulta elimina duplicados y sólo muestra **valores únicos**.
 
 **Ejemplo con nombres en lugar de IDs**  
 Si queremos ver todos los nombres diferentes de clientes sin duplicados:
@@ -443,7 +443,7 @@ GROUP BY "lista-de-columnas"
 HAVING "condición";
 ```
 
-Si queremos mostrar **solo las clasificaciones (`rating`) con más de 200 películas**, usamos `HAVING`:
+Si queremos mostrar **sólo las clasificaciones (`rating`) con más de 200 películas**, usamos `HAVING`:
 
 #### **Ejemplo: Filtrar clasificaciones con más de 200 películas**
 ```sql
@@ -456,7 +456,7 @@ HAVING COUNT(*) > 200;
 **Explicación:**
 - `GROUP BY rating`: Agrupa las películas por clasificación (`rating`).
 - `COUNT(*)`: Cuenta cuántas películas hay en cada grupo.
-- `HAVING COUNT(*) > 200`: Filtra los grupos para mostrar solo los que tienen más de 200 películas.
+- `HAVING COUNT(*) > 200`: Filtra los grupos para mostrar sólo los que tienen más de 200 películas.
 
 ---
 
@@ -473,9 +473,9 @@ Si queremos filtrar **después de agrupar**, usamos `HAVING`.
 
 ### 🔹 **Combinando `WHERE` y `HAVING`**
 Podemos combinar `WHERE` y `HAVING` en la misma consulta.  
-**Ejemplo:** Filtrar películas que tienen una duración mayor a 60 minutos (`WHERE`), y luego contar cuántas hay por clasificación (`GROUP BY`). Finalmente, mostramos solo las clasificaciones con más de 150 películas (`HAVING`).
+**Ejemplo:** Filtrar películas que tienen una duración mayor a 60 minutos (`WHERE`), y luego contar cuántas hay por clasificación (`GROUP BY`). Finalmente, mostramos sólo las clasificaciones con más de 150 películas (`HAVING`).
 
-#### **Ejemplo: Filtrar películas con duración > 60 min y contar solo las clasificaciones con más de 150 películas**
+#### **Ejemplo: Filtrar películas con duración > 60 min y contar sólo las clasificaciones con más de 150 películas**
 ```sql
 SELECT rating, COUNT(*) 
 FROM film 
@@ -586,7 +586,7 @@ ORDER BY COUNT(*) DESC;
 
 ---
 ## LIMIT
-El `LIMIT` es una cláusula en SQL que se utiliza para restringir la cantidad de filas devueltas por una consulta. Es útil cuando queremos obtener solo una cantidad específica de resultados, por ejemplo, las primeras 10 filas o las 5 últimas, dependiendo de la ordenación de los datos.
+El `LIMIT` es una cláusula en SQL que se utiliza para restringir la cantidad de filas devueltas por una consulta. Es útil cuando queremos obtener sólo una cantidad específica de resultados, por ejemplo, las primeras 10 filas o las 5 últimas, dependiendo de la ordenación de los datos.
 
 #### Sintaxis básica
 ```sql
@@ -697,9 +697,26 @@ WHERE length = (SELECT MAX(length) FROM film);
 
 📌 **Ejemplo: Películas alquiladas por al menos un cliente específico**  
 ```sql
-SELECT title  
-FROM film  
-WHERE film_id IN (SELECT film_id FROM inventory WHERE inventory_id IN (SELECT inventory_id FROM rental WHERE customer_id = 1));  
+SELECT
+  title
+FROM
+  film
+WHERE
+  film_id IN (
+    SELECT
+      film_id
+    FROM
+      inventory
+    WHERE
+      inventory_id IN (
+        SELECT
+          inventory_id
+        FROM
+          rental
+        WHERE
+          customer_id = 1
+      )
+  );
 ```
 
 🔹 **Explicación del último ejemplo:**
@@ -717,10 +734,10 @@ Este tipo de consultas permiten obtener datos sin necesidad de hacer `JOIN`, aun
 La cláusula `FROM` y los `JOINs` subsecuentes se ejecutan primero para determinar el conjunto total de datos que se está consultando. Esto incluye subconsultas en esta cláusula, y puede generar tablas temporales bajo el capó que contienen todas las columnas y filas de las tablas que se están uniendo.
 
 2. **WHERE**  
-Una vez que tenemos el conjunto total de datos, las restricciones de `WHERE` de primer pase se aplican a las filas individuales, y las filas que no satisfacen la restricción son descartadas. Cada una de las restricciones solo puede acceder a las columnas directamente de las tablas solicitadas en la cláusula `FROM`. Los alias en la parte `SELECT` de la consulta no son accesibles en la mayoría de las bases de datos, ya que pueden incluir expresiones dependientes de partes de la consulta que aún no se han ejecutado.
+Una vez que tenemos el conjunto total de datos, las restricciones de `WHERE` de primer pase se aplican a las filas individuales, y las filas que no satisfacen la restricción son descartadas. Cada una de las restricciones sólo puede acceder a las columnas directamente de las tablas solicitadas en la cláusula `FROM`. Los alias en la parte `SELECT` de la consulta no son accesibles en la mayoría de las bases de datos, ya que pueden incluir expresiones dependientes de partes de la consulta que aún no se han ejecutado.
 
 3. **GROUP BY**  
-Las filas restantes después de aplicar las restricciones `WHERE` se agrupan según los valores comunes en la columna especificada en la cláusula `GROUP BY`. Como resultado de la agrupación, solo habrá tantas filas como valores únicos haya en esa columna. Implícitamente, esto significa que solo deberías usar esto cuando tengas funciones de agregación en tu consulta.
+Las filas restantes después de aplicar las restricciones `WHERE` se agrupan según los valores comunes en la columna especificada en la cláusula `GROUP BY`. Como resultado de la agrupación, sólo habrá tantas filas como valores únicos haya en esa columna. Implícitamente, esto significa que sólo deberías usar esto cuando tengas funciones de agregación en tu consulta.
 
 4. **HAVING**  
 Si la consulta tiene una cláusula `GROUP BY`, entonces las restricciones en la cláusula `HAVING` se aplican a las filas agrupadas, descartando las filas agrupadas que no satisfacen la restricción. Al igual que en la cláusula `WHERE`, los alias tampoco son accesibles desde este paso en la mayoría de las bases de datos.
@@ -738,7 +755,7 @@ Si se especifica un orden mediante la cláusula `ORDER BY`, las filas se ordenan
 Finalmente, se descartan las filas que quedan fuera del rango especificado por el `LIMIT` y `OFFSET`, dejando el conjunto final de filas que se devolverán de la consulta.
 
 **CONCLUSIÓN:**  
-No todas las consultas necesitan tener todas las partes que hemos listado arriba, pero parte de la razón por la que SQL es tan flexible es que permite a los desarrolladores y analistas de datos manipular rápidamente los datos sin tener que escribir código adicional, todo solo usando las cláusulas mencionadas arriba.
+No todas las consultas necesitan tener todas las partes que hemos listado arriba, pero parte de la razón por la que SQL es tan flexible es que permite a los desarrolladores y analistas de datos manipular rápidamente los datos sin tener que escribir código adicional, todo sólo usando las cláusulas mencionadas arriba.
 
 ---
 
@@ -753,7 +770,7 @@ No todas las consultas necesitan tener todas las partes que hemos listado arriba
 8. Muestra el total del costo de reemplazo (`replacement_cost`) por cada clasificación (`rating`) de película.
 9. Cuenta cuántas películas hay en cada clasificación (`rating`), pero excluyendo aquellas con clasificación 'PG' y 'R'.
 10. Muestra los títulos de las películas (`title`) donde el costo de alquiler (`rental_rate`) es más de tres veces el costo de reemplazo (`replacement_cost`).
-11. Ordena las películas por su duración de mayor a menor y muestra solo las 10 primeras.
+11. Ordena las películas por su duración de mayor a menor y muestra sólo las 10 primeras.
 12. Muestra el título (`title`) de las películas junto con la diferencia entre su tarifa de alquiler (`rental_rate`) y su costo de reemplazo (`replacement_cost`).
 13. Muestra los títulos (`title`) de las películas que tienen el mismo costo de reemplazo (`replacement_cost`) que la película más barata.
 14. Agrupa las películas por su duración total (`length`) y muestra el precio promedio de alquiler (`rental_rate`) por cada grupo de duración.
@@ -763,4 +780,11 @@ No todas las consultas necesitan tener todas las partes que hemos listado arriba
 > 💡 Pistas: Tienes que usar subconsultas. Para saber las películas que han sido alquiladas más recientemente según la fecha de alquiler, tienes que consultar en la tabla `rental` los `inventory_id` donde la fecha de alquiler (`rental_date`) sea la menor, y luego tienes que hacer la consulta en la tabla `inventory` y `film` para saber el nombre de las peliculas. 
 18. Muestra las películas de las clasificaciones (`rating`) más populares, ordenadas por la cantidad de películas en cada clasificación.
 19. Muestra los títulos de las películas cuyo costo de reemplazo es menor que el costo promedio de alquiler.
-20. Cuenta cuántas películas hay en cada clasificación (`rating`) y muestra solo las clasificaciones con más de 50 películas.
+20. Cuenta cuántas películas hay en cada clasificación (`rating`) y muestra sólo las clasificaciones con más de 50 películas.
+
+---
+
+## Bibliografía
+- Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database System Concepts (7th ed.). McGraw Hill Education.
+- https://dbs.academy.lv/lection/dbs_LS10EN_sql-dml.pdf
+- https://www.sqlcourse.com/advanced-course/tutorial-intro/
