@@ -730,29 +730,18 @@ Este tipo de consultas permiten obtener datos sin necesidad de hacer `JOIN`, aun
 
 ## SELECT - Orden de Ejecución de la Consulta
 
-1. **FROM y JOINs**  
-La cláusula `FROM` y los `JOINs` subsecuentes se ejecutan primero para determinar el conjunto total de datos que se está consultando. Esto incluye subconsultas en esta cláusula, y puede generar tablas temporales bajo el capó que contienen todas las columnas y filas de las tablas que se están uniendo.
+| **Orden** | **Cláusula**  | **Función**                                                                                                    |
+|-----------|---------------|------------------------------------------------------------------------------------------------------------|
+| **1**     | `FROM`        | El primer paso es identificar las tablas o vistas involucradas en la consulta. Esto se especifica en la cláusula FROM de la consulta. |
+| **2**     | `JOIN `       | Si la consulta involucra varias tablas y requiere una operación de JOIN, se evalúan las condiciones de JOIN para combinar los datos de diferentes tablas. |
+| **2**     | `WHERE`       | La cláusula WHERE se aplica para filtrar las filas según las condiciones especificadas. Las filas que no cumplen las condiciones se eliminan del procesamiento posterior. |
+| **3**     | `GROUP BY`    | Si la consulta incluye una cláusula GROUP BY, las filas se agrupan según las columnas especificadas.         |
+| **4**     | `HAVING`      | Si existe una cláusula HAVING, se aplica para filtrar los grupos generados por la cláusula GROUP BY. Los grupos que no cumplen las condiciones se eliminan. |
+| **5**     | `SELECT`      | La cláusula SELECT se aplica para determinar las columnas que se incluirán en el conjunto de resultados. En esta etapa también se evalúan los cálculos o funciones especificados en la cláusula SELECT. |
+| **6**     | `DISTINCT`    | Si la consulta incluye la palabra clave DISTINCT, las filas duplicadas se eliminan del conjunto de resultados. |
+| **7**     | `ORDER BY`    | Si hay una cláusula ORDER BY, el conjunto de resultados se ordena según las columnas especificadas.         |
+| **8**     | `LIMIT`       | Si la consulta incluye una cláusula LIMIT y/o OFFSET, el conjunto de resultados se limita a un número específico de filas y/o se omite un número determinado de filas. |
 
-2. **WHERE**  
-Una vez que tenemos el conjunto total de datos, las restricciones de `WHERE` de primer pase se aplican a las filas individuales, y las filas que no satisfacen la restricción son descartadas. Cada una de las restricciones sólo puede acceder a las columnas directamente de las tablas solicitadas en la cláusula `FROM`. Los alias en la parte `SELECT` de la consulta no son accesibles en la mayoría de las bases de datos, ya que pueden incluir expresiones dependientes de partes de la consulta que aún no se han ejecutado.
-
-3. **GROUP BY**  
-Las filas restantes después de aplicar las restricciones `WHERE` se agrupan según los valores comunes en la columna especificada en la cláusula `GROUP BY`. Como resultado de la agrupación, sólo habrá tantas filas como valores únicos haya en esa columna. Implícitamente, esto significa que sólo deberías usar esto cuando tengas funciones de agregación en tu consulta.
-
-4. **HAVING**  
-Si la consulta tiene una cláusula `GROUP BY`, entonces las restricciones en la cláusula `HAVING` se aplican a las filas agrupadas, descartando las filas agrupadas que no satisfacen la restricción. Al igual que en la cláusula `WHERE`, los alias tampoco son accesibles desde este paso en la mayoría de las bases de datos.
-
-5. **SELECT**  
-Cualquier expresión en la parte `SELECT` de la consulta finalmente se computa.
-
-6. **DISTINCT**  
-De las filas restantes, se descartan las filas con valores duplicados en la columna marcada como `DISTINCT`.
-
-7. **ORDER BY**  
-Si se especifica un orden mediante la cláusula `ORDER BY`, las filas se ordenan según los datos especificados, ya sea en orden ascendente o descendente. Dado que todas las expresiones en la parte `SELECT` de la consulta ya se han computado, puedes hacer referencia a los alias en esta cláusula.
-
-8. **LIMIT / OFFSET**  
-Finalmente, se descartan las filas que quedan fuera del rango especificado por el `LIMIT` y `OFFSET`, dejando el conjunto final de filas que se devolverán de la consulta.
 
 **CONCLUSIÓN:**  
 No todas las consultas necesitan tener todas las partes que hemos listado arriba, pero parte de la razón por la que SQL es tan flexible es que permite a los desarrolladores y analistas de datos manipular rápidamente los datos sin tener que escribir código adicional, todo sólo usando las cláusulas mencionadas arriba.
