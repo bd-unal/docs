@@ -100,7 +100,7 @@ FROM film_category;
 ```
 
 **Consulta con `DISTINCT`**  
-Si queremos ver solo **las categorías únicas** de películas, usamos `DISTINCT`:
+Si queremos ver sólo **las categorías únicas** de películas, usamos `DISTINCT`:
 
 ```sql
 SELECT DISTINCT category_id  
@@ -303,7 +303,7 @@ Usando `ROUND(x, d)`, donde `d` es el número de decimales deseados.
 
 ```sql
 SELECT title, replacement_cost,  
-ROUND(replacement_cost, 1) AS costo_redondeado_2decimales  
+ROUND(replacement_cost, 1) AS costo_redondeado_1decimal  
 FROM film;  
 ```
 
