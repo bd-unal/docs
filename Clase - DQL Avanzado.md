@@ -749,7 +749,7 @@ No todas las consultas necesitan tener todas las partes que hemos listado arriba
 ---
 
 ## 📝 **Ejercicios en Clase: DQL Avanzado**
-1. Muestra las películas que tienen una duración (`length`) mayor a 100 minutos y una clasificación (`rating`) de 'R'. ¿Cuántas películas cumplen esta condición?
+1. Cuenta las películas que tienen una duración (`length`) mayor a 100 minutos y una clasificación (`rating`) de 'R'. ¿Cuántas películas cumplen esta condición?
 2. Muestra las películas cuyo precio de alquiler (`rental_rate`) sea superior al precio medio de todas las películas.
 3. Agrupa las películas por duración (`length`) y muestra cuántas películas existen para cada duración única.
 4. Muestra el precio de alquiler (`rental_rate`) de las películas con un descuento del 20%, renombrado como "Precio con Descuento". Usa el `title` de la pelicula.
