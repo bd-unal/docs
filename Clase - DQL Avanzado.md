@@ -766,7 +766,7 @@ No todas las consultas necesitan tener todas las partes que hemos listado arriba
 15. Muestra las películas cuya duración (`length`) sea igual a la de la película más larga o más corta.
 16. Muestra las películas que tienen un costo de reemplazo (`replacement_cost`) superior al promedio y cuya duración (`length`) sea menor a 90 minutos.
 17. Muestra las películas que han sido alquiladas más recientemente según la fecha de alquiler.
-> 💡 Pistas: Tienes que usar subconsultas. Para saber las películas que han sido alquiladas más recientemente según la fecha de alquiler, tienes que consultar en la tabla `rental` los `inventory_id` donde la fecha de alquiler (`rental_date`) sea la menor, y luego tienes que hacer la consulta en la tabla `inventory` y `film` para saber el nombre de las peliculas. 
+> 💡 Pistas: Tienes que usar subconsultas. Para saber las películas que han sido alquiladas más recientemente según la fecha de alquiler, tienes que consultar en la tabla `rental` los `inventory_id` donde la fecha de alquiler (`rental_date`) sea la mayor, y luego tienes que hacer la consulta en la tabla `inventory` y `film` para saber el nombre de las peliculas. 
 18. Muestra las películas de las clasificaciones (`rating`) más populares, ordenadas por la cantidad de películas en cada clasificación.
 19. Muestra los títulos de las películas cuyo costo de reemplazo es menor que el costo promedio de alquiler.
 20. Cuenta cuántas películas hay en cada clasificación (`rating`) y muestra sólo las clasificaciones con más de 50 películas.
