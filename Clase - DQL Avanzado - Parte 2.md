@@ -373,7 +373,7 @@ WITH cte_name AS (
 SELECT columnas
 FROM cte_name;
 ```
-La CTE se define con la palabra clave `WIT`H`, seguida del nombre de la CTE (en este caso cte_name), y una subconsulta que se ejecuta como parte de la consulta principal.
+La CTE se define con la palabra clave `WITH`, seguida del nombre de la CTE (en este caso cte_name), y una subconsulta que se ejecuta como parte de la consulta principal.
 
 ### Ventajas de las CTE:
 - Mejora la legibilidad de consultas complejas.
@@ -438,21 +438,7 @@ Este flujo de trabajo muestra cómo las CTEs pueden ser útiles para realizar ac
 ### Consideraciones importantes sobre CTEs:
 - **Alcance limitado**: Las CTEs solo son visibles dentro de la consulta en la que se definen. No se pueden usar fuera de esa consulta.
 - **Performance**: Las CTEs pueden mejorar la legibilidad de la consulta, pero no siempre tienen un impacto positivo en el rendimiento.
-- Hay otro tipos de CTEs llamados CTEs recursivos que es importante conocer pero no son tan usadas y pueden tener un impacto en el rendimiento sino se manejan bien. Ejemplo:
-```sql
-WITH RECURSIVE employee_hierarchy AS (
-    -- Base case: obtener el gerente
-    SELECT staff_id, first_name, last_name, manager_staff_id
-    FROM staff
-    WHERE manager_staff_id IS NULL
-    UNION ALL
-    -- Recursive case: obtener empleados bajo cada gerente
-    SELECT s.staff_id, s.first_name, s.last_name, s.manager_staff_id
-    FROM staff s
-    INNER JOIN employee_hierarchy eh ON s.manager_staff_id = eh.staff_id
-)
-SELECT * FROM employee_hierarchy;
-```
+- Hay otro tipos de CTEs llamados CTEs recursivos que es importante conocer pero no son tan usadas y pueden tener un impacto en el rendimiento sino se manejan bien. Para ver un ejemplo de CTEs recursivos, ir al siguiente [link](https://learnsql.es/blog/que-es-una-cte-recursiva-en-sql/).
 
 ---
 
@@ -695,3 +681,4 @@ SELECT * FROM film_rental_count WHERE film_id = 1;
 - https://neon.tech/postgresql/postgresql-views
 - https://www.postgresql.org/docs
 - https://www.udemy.com/course/the-complete-sql-bootcamp/learn/lecture/18335690#overview
+- https://learnsql.es/blog/que-es-una-cte-recursiva-en-sql/
