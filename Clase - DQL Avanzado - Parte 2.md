@@ -21,7 +21,7 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   SELECT NOW();
   ```
 
-- **TIMEOFDAY()**: Devuelve la hora actual del día.
+- **TIMEOFDAY()**: Devuelve la fecha y hora actual del día como cadena de texto.
   
   ```sql
   SELECT TIMEOFDAY();
