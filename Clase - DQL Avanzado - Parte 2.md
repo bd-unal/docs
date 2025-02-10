@@ -1,6 +1,6 @@
 # DQL Avanzado - Parte 2
 
-## **TIMESTAMPS and EXTRACT**
+## **TIMESTAMPS y EXTRACT**
 
 Recordemos que en PostgreSQL, podemos almacenar fechas y horas utilizando los siguientes tipos de datos:
 
