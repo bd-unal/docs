@@ -53,7 +53,8 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   Supongamos que tenemos una columna `rental_date` en la tabla `rental` que almacena la fecha de alquiler. Para obtener el año de cada alquiler, podemos usar la siguiente consulta:
 
   ```sql
-  SELECT rental_id, EXTRACT(YEAR FROM rental_date) AS rental_year FROM rental LIMIT 5;
+  SELECT rental_id, EXTRACT(YEAR FROM rental_date) AS rental_year
+  FROM rental LIMIT 5;
   ```
 
   **Resultado esperado:**
@@ -66,7 +67,8 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
     Supongamos que tenemos una columna `rental_date` en la tabla `rental` que almacena la fecha de alquiler. Para calcular la diferencia entre la fecha de alquiler y la fecha actual, podemos usar:
 
     ```sql
-    SELECT rental_id, AGE(rental_date) AS age FROM rental LIMIT 5;
+    SELECT rental_id, AGE(rental_date) AS age
+    FROM rental LIMIT 5;
     ```
 
     **Resultado esperado:**
@@ -78,7 +80,8 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   Para formatear la fecha de alquiler (`rental_date`) de la tabla `rental` a un formato específico:
 
   ```sql
-  SELECT rental_id, TO_CHAR(rental_date, 'MM-DD-YYYY') AS formatted_date FROM rental LIMIT 5;
+  SELECT rental_id, TO_CHAR(rental_date, 'MM-DD-YYYY') AS formatted_date
+  FROM rental LIMIT 5;
   ```
 
   **Resultado esperado:**</br>
