@@ -158,6 +158,17 @@ ORDER BY total_rentals DESC;
 
 --- 
 
+## Funciones de texto
+
+En PostgreSQL, las funciones de texto son herramientas útiles para manipular cadenas de caracteres. Algunas de las funciones más utilizadas incluyen `LENGTH` para obtener la longitud de una cadena, `UPPER` y `LOWER` para convertir a mayúsculas o minúsculas, `CONCAT` para concatenar varias cadenas, `SUBSTRING` para extraer una parte de una cadena, `TRIM` para eliminar espacios en blanco, y `REPLACE` para sustituir partes de una cadena por otra. También existen funciones como `POSITION`, que encuentra la posición de una subcadena, y `REGEXP_MATCHES`, que permite trabajar con expresiones regulares para patrones más complejos. Estas funciones son fundamentales para la manipulación y transformación de datos de texto dentro de las bases de datos.
+Para ver todas las funciones de texto disponibles en PostgreSQL consulte el siguiente [link](https://www.postgresql.org/docs/9.1/functions-string.html).
+
+## Ejercicios de funciones de texto
+1. Convierte el nombre y apellido de los actores a mayúsculas y devuelvelo en un solo campo llamado `nombre_completo`.
+2. Usar la función `SUBSTRING` para extraer los primeros 10 caracteres del título de las películas.
+3. Reemplaza la palabra "action" por "adventure" en las descripciones de las películas.
+
+---
 ## **UNION, INTERSECT y EXCEPT en PostgreSQL**
 
 Estas tres operaciones se utilizan para combinar resultados de múltiples consultas en PostgreSQL. A continuación, se describe brevemente cada una de ellas, junto con ejemplos utilizando el dataset **Pagila**.
