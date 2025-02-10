@@ -105,7 +105,7 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
 
 ### **Funciones de manipulación de fechas**
 
-- **DATE_ADD()**: Suma un intervalo de tiempo a una fecha.
+- **DATE_ADD() o `+`**: Suma un intervalo de tiempo a una fecha.
   
   **Ejemplo con Pagila:**
   Para sumar 10 días a la fecha de alquiler (`rental_date`):
@@ -117,7 +117,7 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   SELECT rental_id, rental_date, rental_date + INTERVAL '10 days' AS new_rental_date FROM rental LIMIT 5;
   ```
 
-- **-**: Calcula la diferencia entre dos fechas. El resultado es un intervalo.
+- **`-`**: Calcula la diferencia entre dos fechas. El resultado es un intervalo.
   
   **Ejemplo con Pagila:**
   
