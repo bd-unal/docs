@@ -112,9 +112,11 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
 
   ```sql
   -- Opción 1:
-  SELECT rental_id, rental_date, DATE_ADD(rental_date, INTERVAL '10 days') AS new_rental_date FROM rental LIMIT 5;
+  SELECT rental_id, rental_date, DATE_ADD(rental_date, INTERVAL '10 days') AS new_rental_date
+  FROM rental LIMIT 5;
   -- Opción 2:
-  SELECT rental_id, rental_date, rental_date + INTERVAL '10 days' AS new_rental_date FROM rental LIMIT 5;
+  SELECT rental_id, rental_date, rental_date + INTERVAL '10 days' AS new_rental_date
+  FROM rental LIMIT 5;
   ```
 
 - **`-`**: Calcula la diferencia entre dos fechas. El resultado es un intervalo.
@@ -123,9 +125,11 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   
   ```sql
   -- Para restar 5 días a la fecha de alquiler (`rental_date`):
-  SELECT rental_id, rental_date, rental_date - INTERVAL '5 days' AS new_rental_date FROM rental LIMIT 5;
+  SELECT rental_id, rental_date, rental_date - INTERVAL '5 days' AS new_rental_date
+  FROM rental LIMIT 5;
   -- Para calcular la diferencia en días entre la fecha de alquiler (`rental_date`) y la fecha actual:
-  SELECT rental_id, rental_date, CURRENT_DATE - rental_date AS date_diff FROM rental LIMIT 5;
+  SELECT rental_id, rental_date, CURRENT_DATE - rental_date AS date_diff
+  FROM rental LIMIT 5;
   -- 
   ```
 
