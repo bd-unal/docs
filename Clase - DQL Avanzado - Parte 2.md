@@ -133,6 +133,29 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   -- 
   ```
 
+### Ejercicios de TIMESTAMPS Y EXTRACT
+1. Consulta los primeros 5 alquileres realizados en el mes de mayo de 2022. Utiliza la función EXTRACT para obtener el mes y año de la fecha de alquiler (`rental_date`).
+```sql
+SELECT rental_id, rental_date
+FROM rental
+WHERE EXTRACT(MONTH FROM rental_date) = 5
+  AND EXTRACT(YEAR FROM rental_date) = 2022
+LIMIT 5;
+```
+2. Queremos obtener el número de días que han pasado desde que cada alquiler fue realizado hasta la fecha actual. Usa la columna de la fecha de alquiler (`rental_date`).
+```sql
+SELECT rental_id, rental_date, AGE(rental_date) AS days_since_rental
+FROM rental
+LIMIT 10;
+```
+3. Calcula el total de alquileres realizados por año y muestra el resultado ordenado de mayor a menor.
+```sql
+SELECT EXTRACT(YEAR FROM rental_date) AS rental_year, COUNT(rental_id) AS total_rentals
+FROM rental
+GROUP BY rental_year
+ORDER BY total_rentals DESC;
+```
+
 --- 
 
 ## **UNION, INTERSECT y EXCEPT en PostgreSQL**
@@ -357,6 +380,13 @@ ON m.employeeid = e.managerid;
 ```
 Esto devolverá el nombre de cada empleado y el nombre de su gerente
 
+## Ejercicios de JOINS
+1. Usa un JOIN para mostrar el nombre y apellido, así como la dirección, de cada miembro del personal. Utilice las tablas `staff` y `address`.
+2. Usa un JOIN para mostrar el monto total cobrado por cada miembro del personal en enero de 2022. Usa las tablas `staff` y `payment`.
+3. Se solicita saber el nombre cada película y el número de actores que aparecen en ella. Utilice las `tablas film_actor` y `film`. Usa `INNER JOIN`.
+4. ¿Cuántas copias de la película 'Hunchback Impossible' existen en el sistema de inventario?
+5. Utilizando las tablas de `payment` y `customer` y el comando JOIN, enumere el total pagado por cada cliente. Devuelva el resultado en orden alfabético por apellido del cliente: 
+
 ---
 
 ## Common Table Expressions (CTE)
@@ -439,6 +469,10 @@ Este flujo de trabajo muestra cómo las CTEs pueden ser útiles para realizar ac
 - **Alcance limitado**: Las CTEs solo son visibles dentro de la consulta en la que se definen. No se pueden usar fuera de esa consulta.
 - **Performance**: Las CTEs pueden mejorar la legibilidad de la consulta, pero no siempre tienen un impacto positivo en el rendimiento.
 - Hay otro tipos de CTEs llamados CTEs recursivos que es importante conocer pero no son tan usadas y pueden tener un impacto en el rendimiento sino se manejan bien. Para ver un ejemplo de CTEs recursivos, ir al siguiente [link](https://learnsql.es/blog/que-es-una-cte-recursiva-en-sql/).
+
+## Ejercicios de CTEs
+1. Usa una CTE para calcular el total de ingresos generados por cada película (mostrar el titulo de la película) en el año 2022. Asegúrate de usar `JOIN` con las tablas `rental` e `inventory` para obtener la información.
+> Puedes crear un CTE para calcular el totdal de ingresos por `film_id` y luego usar el CTE para hacer un join con la tabla `film` y mostrar el titulo de la pelicula y el revenue.
 
 ---
 
@@ -673,7 +707,13 @@ Luego nuevamente podemos ver los registros de la pelicula y se evidencia como el
 SELECT * FROM film_rental_count WHERE film_id = 1;
 ```
 
+## Ejercicios de Vistas
+1.  Muestra los cinco géneros con mayores ingresos brutos en orden descendente. Los generos son los `category.name`. Tienes que hacer JOINs entre las tablas `category`, `inventory`, `rental` y `payment`. Ingresos brutos se refiere a la sumatoria de los ingresos totales de ese genero `SUM(p.amount)`.
+2. En su nuevo rol como ejecutivo, le gustaría tener una manera sencilla de visualizar los cinco géneros principales por ingresos brutos. Utilice la solución del problema anterior para crear una vista.
+3. Muestra la vista y posteriormente borrala.
+
 --- 
+
 
 ## Bibliografía
 - Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database System Concepts (7th ed.). McGraw Hill Education.
