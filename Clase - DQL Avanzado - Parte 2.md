@@ -289,7 +289,7 @@ WHERE inventory.inventory_id is NULL;
 
 ### **RIGHT JOIN**
 El `RIGHT JOIN` es el opuesto al `LEFT JOIN`. Devuelve todas las filas de la tabla de la derecha (`tabla2`) y las filas coincidentes de la tabla de la izquierda (`tabla1`). Si no hay coincidencias en la tabla de la izquierda, las columnas correspondientes de la tabla de la izquierda serán `NULL`.
-#### Sintaxisx
+#### Sintaxis
 ```sql
 SELECT columnas
 FROM tabla1
@@ -351,9 +351,9 @@ ON t1.columna = t2.columna;
 #### Hipotético ejemplo
 ```sql
 SELECT e.name, m.name AS manager 
-FROM Employees e
-LEFT JOIN Employees m 
-ON me.employeeid = e.managerid;
+FROM employee e
+LEFT JOIN employee m 
+ON m.employeeid = e.managerid;
 ```
 Esto devolverá el nombre de cada empleado y el nombre de su gerente
 
