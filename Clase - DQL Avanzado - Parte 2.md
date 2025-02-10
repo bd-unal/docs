@@ -164,6 +164,8 @@ SELECT first_name FROM customer;
 **Explicación:**  
 Este `UNION` devolverá una lista de nombres (`first_name`) tanto de los empleados como de los clientes, eliminando duplicados.
 
+> Para combinar los resultados sin eliminar las filas duplicadas usar `UNION ALL`.
+
 ---
 
 ### **INTERSECT**
