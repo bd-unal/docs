@@ -97,12 +97,6 @@ A continuación, exploraremos algunas funciones y operaciones que podemos realiz
   SELECT TO_TIMESTAMP('2025-02-08 15:30:00', 'YYYY-MM-DD HH24:MI:SS');
   ```
 
-- **TO_DATE()**: Convierte una cadena de texto a un valor de fecha.
-
-  ```sql
-  SELECT TO_DATE('2025/02/08', 'YYYY-MM-DD');
-  ```
-
 ### **Funciones de manipulación de fechas**
 
 - **DATE_ADD() o `+`**: Suma un intervalo de tiempo a una fecha.
