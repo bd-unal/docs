@@ -4,25 +4,21 @@ Existen diversas formas de conectar una base de datos a una aplicación, y la el
 
 ## Métodos Comunes para Conectar una Base de Datos
 
-1. **Drivers Nativos**  
-   Cada DBMS (como PostgreSQL, MySQL, SQL Server, Oracle) ofrece un driver nativo que permite a la aplicación conectarse directamente.  
-   - Ejemplo: Para PostgreSQL se utiliza el módulo [pg](https://github.com/brianc/node-postgres/tree/master/packages/pg) en Node.js que es basado en [libpq](https://www.postgresql.org/docs/9.5/libpq.html).
-
-2. **ODBC y JDBC**  
+1. **ODBC y JDBC**  
    - **ODBC (Open Database Connectivity):** Un estándar que permite conectarse a diferentes bases de datos de forma uniforme.  
    - **JDBC (Java Database Connectivity):** La versión de ODBC para Java, ampliamente utilizada en aplicaciones Java.
 
-3. **ORMs (Object-Relational Mappers)**  
+2. **ORMs (Object-Relational Mappers)**  
    Los ORMs facilitan la interacción entre la aplicación y la base de datos al mapear tablas a objetos.  
    - Ejemplos: Sequelize (Node.js), Hibernate (Java), Entity Framework (.NET), Django ORM (Python).
 
-4. **APIs y Microservicios**  
+3. **APIs y Microservicios**  
    En arquitecturas modernas, se suelen usar APIs RESTful o microservicios para gestionar la comunicación con la base de datos, lo que permite separar la lógica de negocio del acceso a datos.
 
-5. **Conexión Directa mediante Bibliotecas del Lenguaje**  
+4. **Conexión Directa mediante Bibliotecas del Lenguaje**  
    Muchos lenguajes de programación proporcionan bibliotecas específicas para conectarse a bases de datos.  
    - Ejemplos:  
-     - Node.js: módulos como `pg` para PostgreSQL o `mysql2` para MySQL.  
+     - Node.js: módulos como [pg](https://github.com/brianc/node-postgres/tree/master/packages/pg) para PostgreSQL que es basado en [libpq](https://www.postgresql.org/docs/9.5/libpq.html). o `mysql2` para MySQL.  
      - Python: bibliotecas como `psycopg2` para PostgreSQL o `mysql-connector-python` para MySQL.
 
 ## ¿Existe un Estándar?
