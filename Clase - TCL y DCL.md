@@ -226,15 +226,28 @@ Sin un aislamiento adecuado, pueden ocurrir varios problemas:
 - **Dirty Reads (Lecturas Sucias):**  
   Una transacción lee datos que otra transacción aún no ha confirmado.  
   *Problema:* Si la transacción que realizó la escritura se revierte, los datos leídos son inválidos.
+  - Una transacción T1 escribe un valor en X. 
+  - T2 lee el valor de X antes de que T1 se confirme. 
+  - Si T1 se aborta, T2 habrá leído un valor inválido para X.
 
 - **Nonrepeatable Reads (Lecturas No Repetibles):**  
   Una transacción vuelve a leer el mismo registro y obtiene valores diferentes porque otra transacción modificó ese dato.
+  - T1 lee el valor de X.
+  - T2 modifica o elimina el valor de X y luego se confirma.
+  - Si T1 vuelve a leer X, el valor será diferente o incluso podría haber desaparecido.
   
 - **Phantom Reads (Lecturas Fantasma):**  
   Una transacción ejecuta una consulta que devuelve un conjunto de filas; luego, otra transacción inserta o elimina filas que cumplen la misma condición, por lo que al reejecutar la consulta se obtienen resultados diferentes.
+  - La transacción T1 lee filas que cumplen con un predicado P.
+  - La transacción T2 luego inserta o modifica filas, algunas de las cuales cumplen con P.
+  - Si T1 repite su lectura, obtiene un conjunto diferente de resultados.
+  - Si T1 escribe valores basados en la lectura original, las nuevas filas pueden quedar fuera.
 
 - **Lost Updates (Actualizaciones Perdidas):**  
   Dos transacciones leen el mismo dato y realizan actualizaciones; la actualización de una transacción sobrescribe la de la otra.
+  - La transacción T1 lee el valor de X.
+  - La transacción T2 escribe un nuevo valor en X.
+  - T1 escribe en X basándose en el valor leído anteriormente.
 
 ---
 
@@ -341,13 +354,13 @@ PostgreSQL gestiona los bloqueos de manera automática para garantizar la integr
 
 ## 1. Bloqueos de Filas con SELECT ... 
 
-Cuando necesitas asegurarte de que las filas que vas a modificar no sean alteradas por otra transacción, puedes utilizar la cláusula `` en tu consulta `SELECT`. Esto bloquea las filas seleccionadas hasta que la transacción actual finalice.
+Cuando necesitas asegurarte de que las filas que vas a modificar no sean alteradas por otra transacción, puedes utilizar la cláusula `FOR UPDATE` en tu consulta `SELECT`. Esto bloquea las filas seleccionadas hasta que la transacción actual finalice.
 
 Ejemplo:
   ```sql
    SELECT balance FROM accounts 
-   WHERE name = 'Bob' 
-   ;
+   WHERE name = 'Bob'
+   FOR UPDATE;
   ```
 Este comando bloquea la fila correspondiente a la cuenta 'A-102', impidiendo que otra transacción la modifique hasta que se realice un COMMIT o ROLLBACK.
 
@@ -362,6 +375,8 @@ LOCK TABLE orders IN EXCLUSIVE MODE;
 ```
 
 Con este comando, la tabla `orders` se bloquea en modo exclusivo, lo que impide que otras transacciones realicen operaciones de escritura (o incluso algunas de lectura, según el modo) hasta que se libere el bloqueo.
+
+Para aprender de otros tipos de bloqueos vaya a este [link](https://medium.com/@hnasr/postgres-locks-a-deep-dive-9fc158a5641c).
 
 ## 3. Bloqueos Automáticos en PostgreSQL
 
@@ -378,7 +393,7 @@ PostgreSQL aplica bloqueos de forma automática según la operación ejecutada:
   Los bloqueos se mantienen durante toda la transacción. Por ello, es recomendable mantener las transacciones lo más cortas y simples posible para minimizar el impacto en la concurrencia.
 
 - **Uso Responsable de Bloqueos Explícitos:**  
-  Utiliza bloqueos explícitos (como `` o `LOCK TABLE`) solo cuando sea necesario, ya que pueden limitar la concurrencia y afectar el rendimiento de la base de datos.
+  Utiliza bloqueos explícitos (como `FOR UPDATE` o `LOCK TABLE`) solo cuando sea necesario, ya que pueden limitar la concurrencia y afectar el rendimiento de la base de datos.
 
 ---
 
@@ -401,6 +416,8 @@ Para crear una función en PostgreSQL se usa `CREATE FUNCTION`:
 ```sql
 CREATE OR REPLACE FUNCTION nombre_funcion(parametros)
 RETURNS tipo_retorno AS $$
+DECLARE
+    -- Declaración de variables (opcional)
 BEGIN
     -- Lógica de la función
     RETURN valor;
@@ -436,6 +453,8 @@ Para crear un procedimiento en PostgreSQL (disponible desde la versión 11), se 
 CREATE OR REPLACE PROCEDURE nombre_procedimiento(parametros)
 LANGUAGE plpgsql
 AS $$
+DECLARE
+    -- Declaración de variables (opcional)
 BEGIN
     -- Lógica del procedimiento
     -- Se pueden usar COMMIT, ROLLBACK, SAVEPOINT, etc.
@@ -466,6 +485,15 @@ Luego, verifica el resultado con:
 ```sql
 SELECT film_id, title, rental_rate FROM film WHERE film_id = 1;
 ```
+---
+
+## Cuando usar un procedimiento
+- Tareas de manipulación y procesamiento de datos.
+- Implementación de lógica y reglas de negocios en la base de datos.
+- Reducción del riesgo de ataques de inyección SQL.
+- Mejora de la modularidad y la capacidad de mantenimiento del código.
+- Automatización de operaciones rutinarias de la base de datos.
+
 ---
 
 ## Diferencias Clave entre Funciones y Procedimientos

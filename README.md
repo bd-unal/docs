@@ -17,6 +17,7 @@ El contenido de este curso es preparado por David Obregón Sánchez, docente de 
 12. [Clase: DQL Avanzado - Parte 2](Clase%20-%20DQL%20Avanzado%20-%20Parte%202.md)
 13. [Conexión DB con APP](Clase%20-%20Conexi%C3%B3n%20DB%20con%20APP.md)
 14. [Clase: TCL y DCL](Clase%20-%20TCL%20y%20DCL.md)
+15. [Clase: Triggers](Clase%20-%20Triggers.md)
 
 ## Talleres
 - [Taller #1: Introducción a PostgreSQL, pgAdmin y Neon.Tech](Talleres%2FTaller%20%231.md)
